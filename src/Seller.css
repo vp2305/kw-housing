@@ -1,0 +1,170 @@
+.seller {
+  width: 100%;
+  height: 100vh;
+  background-repeat: repeat;
+}
+.seller__wrapper {
+  width: 100%;
+  height: 100vh;
+  padding-top: 10px;
+}
+
+.seller__wrapper > h2 {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  font-weight: 500;
+}
+
+.seller__wrapper > hr {
+  display: block;
+  width: 85%;
+  margin: 15px auto;
+}
+
+.newPostingForm {
+  display: block;
+  width: 80%;
+  margin: auto;
+}
+
+.listing__Details > h2,
+.rental__Details > h2,
+.price__Details > h2,
+.media > h2 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.rental__Details > h2,
+.price__Details > h2,
+.media > h2 {
+  margin-top: 50px;
+}
+
+.seller__inputField {
+  width: 98.5%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: 1px solid rgb(168, 168, 168);
+  margin-top: 10px;
+}
+
+.seller__inputField:focus,
+.seller__inputFieldFlex:focus,
+.description:focus {
+  outline: none;
+}
+
+.flex__form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 15px;
+}
+
+.seller__inputFieldFlex {
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: 1px solid gray;
+  margin-top: 10px;
+}
+
+#sellerFormInfoFlex {
+  margin-bottom: 15px;
+  flex: 1;
+}
+
+#formInfo > label,
+#sellerFormInfoFlex > label {
+  display: block;
+  margin: 0 0 0.28571429rem;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 0.92857143em;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.feature__form {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.feature__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature__column > span > label {
+  margin-left: 10px;
+}
+
+.feature__column > span {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.feature__column > span > input {
+  margin: 0.4rem;
+}
+
+#clearAllButton {
+  display: block;
+  text-transform: inherit !important;
+  width: 120px;
+  height: 45px;
+  font-size: 16px;
+  margin: 0 auto;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.description {
+  width: 98.5%;
+  min-height: 9em;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 1.2em;
+
+  margin-top: 10px;
+}
+
+#genderSpecific {
+  min-width: 15% !important;
+  max-width: 20% !important;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 2px dashed rgb(0, 26, 255);
+  display: inline-block;
+  padding: 6px 12px;
+  height: 90%;
+  cursor: pointer;
+  width: 98%;
+  margin: auto;
+}
+
+#formInfoMedia {
+  display: flex;
+  width: 97%;
+  height: 150px;
+  flex-direction: column;
+  margin: 0px 15px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.custom-file-upload > p {
+  width: max-content;
+  padding-block: 2.5em;
+  margin: auto !important;
+}
