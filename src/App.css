@@ -26,9 +26,3 @@
   object-fit: cover;
   z-index: -999;
 }
-
-.newListing__background {
-  width: 100%;
-  height: 200vh;
-  background-image: linear-gradient(190deg, #f5f7fa 0%, #c3cfe2 100%);
-}

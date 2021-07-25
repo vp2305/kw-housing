@@ -1,11 +1,9 @@
 .seller {
-  width: 100%;
-  height: 100vh;
-  background-repeat: repeat;
+  margin-top: -100px;
+  background-image: linear-gradient(189deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 .seller__wrapper {
   width: 100%;
-  height: 100vh;
   padding-top: 10px;
 }
 
@@ -14,6 +12,7 @@
   width: fit-content;
   margin: auto;
   font-weight: 500;
+  margin-top: 100px;
 }
 
 .seller__wrapper > hr {
@@ -156,15 +155,78 @@ input[type="file"] {
 #formInfoMedia {
   display: flex;
   width: 97%;
-  height: 150px;
   flex-direction: column;
   margin: 0px 15px;
   margin-bottom: 15px;
   background-color: white;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .custom-file-upload > p {
   width: max-content;
   padding-block: 2.5em;
+  margin: auto !important;
+}
+
+.media__preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.image {
+  width: 100%;
+  max-height: 800px;
+  border-radius: 10px;
+  padding: 10px;
+  image-resolution: smooth;
+  object-fit: contain;
+}
+
+.media__previewHide {
+  display: none;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.submitFormContainer {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submitFormContainer > Button {
+  display: block;
+  text-transform: inherit !important;
+  background-color: #3399ff !important;
+  width: 150px;
+  height: 50px;
+  font-size: 16px !important;
+  color: #dfdfdf !important;
   margin: auto !important;
 }
