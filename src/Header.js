@@ -47,6 +47,7 @@ function Header({dark}) {
                 console.log(e);
             }
         } else if (value === "messages"){
+            history.push("/messages");
             try{
                 checkbox.checked=false;
             } catch(e){

@@ -9,10 +9,10 @@ import { useStateValue } from './StateProvider';
 import HeaderLoggedOut from './HeaderLoggedOut';
 import Register from './Register';
 import Seller from './Seller';
+import SidebarWindow from './SidebarWindow';
+import SidebarWithChat from './SidebarWithChat';
 function App() {
-
   const [{ user }, dispatch] = useStateValue();
-
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
       if (authUser){
@@ -36,7 +36,6 @@ function App() {
       <Router>
         <Switch>
           
-
           <Route path="/register">
             <Register />
           </Route>
@@ -44,6 +43,30 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          
+          {!user ? (
+            <Route path="/messages/:roomId">
+              <Login />
+            </Route>
+          ) : (
+            <Route path="/messages/:roomId">
+              <Header />
+              <SidebarWithChat />
+            </Route>
+          )}
+
+          {!user ? (
+            <Route path="/messages">
+              <Login />
+            </Route>
+          ) : (
+            <Route path="/messages">
+              <div className="newListing__background">
+                <Header dark />
+                <SidebarWindow />
+              </div>
+            </Route>
+          )}
 
           {!user ? (
             <Route path="/new-listing">

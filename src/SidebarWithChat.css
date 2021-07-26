@@ -1,0 +1,89 @@
+.sidebarWithChat {
+  height: 90vh;
+  width: 98vw;
+  display: flex;
+  margin: auto;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/instagram-clone-9babf.appspot.com/o/images%2FchatBackground.jpg?alt=media&token=001e4196-a8b7-4d19-a7c1-c44ff06706d1);
+  opacity: 0.8;
+  box-shadow: -10px 10px 20px -6px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  object-fit: contain;
+}
+
+.sidebarWithChat > h1 {
+  color: aliceblue;
+}
+
+.sidebar__leftSide {
+  display: flex;
+  flex-direction: column;
+  flex: 0.25;
+  background: rgba(2, 2, 2, 0.85);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.sidebar__headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__headerLeft > h3 {
+  margin-left: 20px;
+  color: rgba(255, 255, 255, 0.788);
+}
+
+.sidebar__headerRight {
+  display: flex;
+}
+
+.sidebar__headerRight > .MuiButtonBase-root {
+  color: rgba(255, 255, 255, 0.788);
+  margin-right: 10px !important;
+}
+
+.sidebar__searchContainter {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 90%;
+  height: 35px;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.sidebar__search {
+  margin-bottom: 10px;
+}
+
+.sidebar__searchContainter > input {
+  border: none;
+  margin-left: 10px;
+  flex: 0.95;
+  height: 20px;
+}
+
+.sidebar__searchContainter > .MuiSvgIcon-root {
+  color: gray;
+  margin-left: 10px;
+}
+
+.sidebar__chats {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}

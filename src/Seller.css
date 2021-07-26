@@ -215,7 +215,7 @@ input[type="file"] {
 
 .delete-icon {
   position: absolute;
-  top: 90%;
+  top: 85%;
   bottom: 32px;
   font-size: 3rem;
   color: black;

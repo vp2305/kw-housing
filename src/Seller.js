@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from './StateProvider';
 import "./Seller.css";
-import { Avatar, Button, IconButton } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import {MdDelete} from 'react-icons/md';
+import { storage } from "./firebase";
+import db from "./firebase";
+import Geocode from "react-geocode";
+
+// NEED TO CHECK FOR REQUIRED ONCE CLICKED OR NOT... 
+// That will be done in the next iteration...
+
+
 function Seller() {
     // Property Attributes
     // Location Information
@@ -13,124 +21,189 @@ function Seller() {
     const [zipCode, setZipCode] = useState('');
     // Listing Details
     const [listingTitle, setListingTitle] = useState('');
-    const [bedrooms, setBedrooms] = useState('');
-    const [bathrooms, setBathrooms] = useState('');
+    const [bedrooms, setBedrooms] = useState(0);
+    const [bathrooms, setBathrooms] = useState(0);
     const [description, setDescription] = useState('');
     const [features, setFeatures] = useState([]);
     const [buildingType, setBuildingType] = useState('');
     // Rental Agreement Details
-    const [fromDate, setFromDate] = useState('');
-    const [rentDuration, setRentDuration] = useState('');
+    const [fromDate, setFromDate] = useState(0);
+    const [rentDuration, setRentDuration] = useState(0);
     const [leaseType, setLeaseType] = useState('');
     const [genderSpecification, setGenderSpecification] = useState('');
     //Price Details
-    const [pricePerMonth, setPricePerMonth] = useState('');
-    const [utilityPricePerMonth, setUtilityPricePerMonth] = useState('');
-    // Media
-    const [media, setMedia] = useState();
-
-
-    // A way to connect the property to the seller
-    const [sellerUID, setSellerUID] = useState('');
-    const [sellerName, setSellerName] = useState('');
-    // Additional info about the place (stored in database) that will help us later on for placing markers
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
-
-    const [{ user }] = useStateValue();
-    
-    // posting user image and its condition handling
-    const [mydata, setData] = useState([]);
+    const [pricePerMonth, setPricePerMonth] = useState(0);
+    const [utilityPricePerMonth, setUtilityPricePerMonth] = useState(0);
+    // Media posting and its condition handling
+    const [previewImageState] = useState([]);
     const [current, setCurrent] = useState(0);
     const [length, setLength] = useState(0);
     const [showImageDiv, setShowImageDiv] = useState(false);
+    const [finalImageState] = useState([]);
+    const [imageURLS] = useState([])
+
+    // Additional info about the place (stored in database) that will help us later on for placing markers
+    const [{ user }] = useStateValue();
+    
+    Geocode.setApiKey("AIzaSyDkBnNjsz_3xo2YC6M3Dygcf8kWFZzqm9w");
+    Geocode.setLanguage("en");
+    Geocode.setRegion("ca");
 
     useEffect(() => {
-        console.log(length);
         if (length !== 0){
             alert('You have successfully uploaded ' + length + ' pictures');
         }
     }, [length]);
 
-
     const nexSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1)
     }
-   
 
     const previousSlide = () => {
         setCurrent(current === 0 ? length - 1 : current - 1)
     }
 
     const deleteImage = () => {
-
-
-        mydata.splice(current, 1)
-        setLength(mydata.length);
-    
+        previewImageState.splice(current, 1)
+        setLength(previewImageState.length);
         if (current === 0){
             nexSlide();
         } else {
             previousSlide();
-        }
-       
+        }  
     }
-
-
 
     const onImageChange = (event) => {
         // https://www.youtube.com/watch?v=l1MYfu5YWHc&ab_channel=BrianDesign
-        
         if (event.target.files && event.target.files[0]) {
-            console.log(event.target.files);
             if (length <= 10) {
                 for (let i = 0; i < event.target.files.length; i++) {
-                    mydata.push({
-                        image: URL.createObjectURL(event.target.files[i]),
-                        index: i,
-                        name: event.target.files[i].name
-                    });
-                    console.log(mydata);
+                    previewImageState.push(URL.createObjectURL(event.target.files[i]));
+                    finalImageState.push(event.target.files[i]);
                 }
-                setLength(mydata.length)
+                setLength(previewImageState.length)
                 setShowImageDiv(true);
             } else { 
                 alert("You have successfully uploaded 10 pictures already, you can't provide more then 10 pictures!");
             }
-
         }
     }
 
     const checkedBox = (event) => {
-        console.log(features);
+        // Handling all the features like adding or removing items based on the user input.
         var currentCheckedName = event.target.name;
         if (features.includes(currentCheckedName)) {
             features.splice(features.indexOf(currentCheckedName), 1)
         } else {
             features.push(currentCheckedName)
         }
-        console.log(features);
     }
-
-
 
     const postListing = (event) => {
         event.preventDefault();
-        console.log("Address: " + address);
-        console.log("City: " + city);
-        console.log("Unit Number: " + unitNumber);
-        console.log("zipCode: " + zipCode);
-        console.log("listingTitle: " + listingTitle);
-        console.log("bedrooms: " + bedrooms);
-        console.log("bathrooms: " + bathrooms);
-        console.log("description: " + description);
-        console.log("buildingType: " + buildingType);
-        console.log("fromDate: " + fromDate);
-        console.log("rentDuration: " + rentDuration);
-        console.log("leaseType: " + leaseType);
-        console.log("genderSpecification: " + genderSpecification);
-        console.log("pricePerMonth: " + pricePerMonth);
-        console.log("utilityPricePerMonth: " + utilityPricePerMonth);
+        getLat_lng(address);
+    }
+
+    const getLat_lng = (address) => {
+        // Getting lat and lng based on the address
+        Geocode.fromAddress(address).then(
+            (response) => {
+            //   const { lat, lng } = response.results[0].geometry.location;
+            //   setLatitude(response.results[0].geometry.location.lat);
+            //   setLongitude(response.results[0].geometry.location.lng);
+            
+                // Call handle upload function for uploading to the database with the correct lat and lng.
+              handleUpload(response.results[0].geometry.location.lat, response.results[0].geometry.location.lng);
+            },
+            (error) => {
+              console.error(error);
+            }
+            
+        );
+        
+    }
+
+    const handleUpload = (lat, lng) => {
+        let counter = 0;
+        finalImageState.map((images)=>{
+            const uploadTask = storage.ref(`images/${images.name}`).put(images)
+            uploadTask.on(
+                "state_changed", 
+                (snapshot) => {
+                    // progress function ...
+                },
+                (error) => {
+                    // Error function ...
+                    console.log(error);
+                    alert(error.message);
+                },
+                () => {
+                    // complete function
+                    storage
+                    .ref("images")
+                    .child(images.name)
+                    .getDownloadURL()
+                    // ^ this will go get the download link
+                    .then(url => {
+                        counter = counter + 1;
+                        imageURLS.push(url);            
+                        console.log("Counter : " + counter);   
+                        console.log(length);
+                        if (counter === length) {
+                            // Uploading the property to all the available property tab.
+                            db.collection("availableProperty").add({
+                                address: address,
+                                city: city,
+                                unitNumber: unitNumber, 
+                                zipCode: zipCode,
+                                listingTitle: listingTitle,
+                                bedrooms: bedrooms,
+                                bathrooms: bathrooms,
+                                description: description,
+                                buildingType: buildingType,
+                                fromDate: fromDate,
+                                rentDuration: rentDuration,
+                                leaseType: leaseType,
+                                genderSpecification: genderSpecification,
+                                pricePerMonth: pricePerMonth,
+                                utilityPricePerMonth: utilityPricePerMonth,
+                                sellerUID: user?.uid,
+                                sellerName: user?.displayName,
+                                features: features,
+                                imageURLS: imageURLS,
+                                latitude: lat,
+                                longitude: lng,
+                            });
+
+                            // Uploading the property to the user tab for my postings tab.
+                            db.collection("users").doc(user?.uid).collection("userSellingProperty").add({
+                                address: address,
+                                city: city,
+                                unitNumber: unitNumber, 
+                                zipCode: zipCode,
+                                listingTitle: listingTitle,
+                                bedrooms: bedrooms,
+                                bathrooms: bathrooms,
+                                description: description,
+                                buildingType: buildingType,
+                                fromDate: fromDate,
+                                rentDuration: rentDuration,
+                                leaseType: leaseType,
+                                genderSpecification: genderSpecification,
+                                pricePerMonth: pricePerMonth,
+                                utilityPricePerMonth: utilityPricePerMonth,
+                                sellerUID: user?.uid,
+                                sellerName: user?.displayName,
+                                features: features,
+                                imageURLS: imageURLS,
+                                latitude: lat,
+                                longitude: lng,
+                            });
+                        }
+                    });
+                }   
+            );
+        })
     }
 
     return (
@@ -154,14 +227,19 @@ function Seller() {
                                 <p>Click to upload up to 10 images of your listing</p>
                             </label>
                             <div className={showImageDiv ? 'media__preview' : 'media__previewHide'}>
-                                <FaArrowAltCircleLeft className="left-arrow" onClick={previousSlide} />
+                                
+                                <FaArrowAltCircleLeft className="left-arrow" 
+                                onClick={previousSlide} />
+                                
                                 <FaArrowAltCircleRight className="right-arrow" onClick={nexSlide} />
+
                                 <MdDelete className="delete-icon" onClick={deleteImage}/>
-                                {mydata.map((slide, index) => {
+                               
+                                {previewImageState.map((slide, index) => {
                                     return (
                                         <div className={index === current ? 'slide active' : 'slide'} key={index}>
                                             {index === current && (
-                                                <img src={slide.image} alt='travel image' className="image" />
+                                                <img src={slide} alt='travel image' className="image" />
                                             )}
                                         </div>
                                     )
