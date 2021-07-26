@@ -7,10 +7,12 @@
   text-transform: capitalize;
   box-sizing: border-box;
   background-color: transparent;
+  z-index: 100;
 }
 
 .header.active {
-  background-color: #7a695b;
+  background-color: white;
+  z-index: 100;
 }
 
 .header ul {

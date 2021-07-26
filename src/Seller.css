@@ -213,6 +213,17 @@ input[type="file"] {
   user-select: none;
 }
 
+.delete-icon {
+  position: absolute;
+  top: 90%;
+  bottom: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
 .submitFormContainer {
   width: 100%;
   height: 150px;
