@@ -1,5 +1,5 @@
 .bot {
-  padding-top: 9vh;
+  padding-top: 5rem;
   width: 100%;
   position: relative;
   display: grid;
@@ -12,28 +12,34 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 1rem;
 }
 
 .buttonContainer {
   display: flex;
   flex-direction: row;
   margin: auto;
+  padding-top: 1rem;
 }
 
 .bot__container > h2 {
   color: #dfdfdf;
   margin: auto;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  width: 70%;
 }
 
 .buttonContainer > Button {
   display: block;
   text-transform: inherit !important;
-  background-color: #7a695b !important;
+  background-color: #3399ff;
+  background-color: #4461f2 !important;
   margin-top: 25px;
   width: 150px;
-  height: 50px;
+  height: 3.1em;
   font-size: 16px;
   margin: 10px 30px;
   color: #dfdfdf;

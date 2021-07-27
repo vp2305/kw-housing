@@ -11,7 +11,6 @@ import Geocode from "react-geocode";
 // NEED TO CHECK FOR REQUIRED ONCE CLICKED OR NOT... 
 // That will be done in the next iteration...
 
-
 function Seller() {
     // Property Attributes
     // Location Information

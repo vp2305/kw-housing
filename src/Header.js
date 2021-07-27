@@ -28,6 +28,7 @@ function Header({dark}) {
                 console.log(e);
             }
         } else if (value === "my posting"){
+            history.push("/my-postings");
             try{
                 checkbox.checked=false;
             } catch(e){

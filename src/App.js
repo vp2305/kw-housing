@@ -11,6 +11,8 @@ import Register from './Register';
 import Seller from './Seller';
 import SidebarWindow from './SidebarWindow';
 import SidebarWithChat from './SidebarWithChat';
+import MyPosting from './MyPosting';
+
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
@@ -43,6 +45,17 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+
+          {!user ? (
+            <Route path="/my-postings">
+              <Login />
+            </Route>
+          ) : (
+            <Route path="/my-postings">
+              <Header dark/>
+              <MyPosting />
+            </Route>
+          )}
           
           {!user ? (
             <Route path="/messages/:roomId">
