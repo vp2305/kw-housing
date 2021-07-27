@@ -12,25 +12,32 @@
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 40px;
 }
 
 .buttonContainer {
   display: flex;
   flex-direction: row;
   margin: auto;
+  padding-top: 40px;
 }
 
 .bot__container > h2 {
   color: #dfdfdf;
   margin: auto;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
+
+  font-weight: bold;
+  font-size: 48px;
+  width: 70%;
 }
 
 .buttonContainer > Button {
   display: block;
   text-transform: inherit !important;
-  background-color: #7a695b !important;
+  background-color: #3399ff;
+  background-color: #4461f2 !important;
   margin-top: 25px;
   width: 150px;
   height: 50px;
