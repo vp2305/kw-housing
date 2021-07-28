@@ -5,7 +5,18 @@
 /*Utility Classes*/
 .text-grey {
   color: #a1a1a6;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.subheading {
+  padding: 3px 0px;
+
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+#form-info-media {
+  margin-top: 10px;
 }
 
 /*Remaining css*/
