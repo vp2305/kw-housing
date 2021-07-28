@@ -7,11 +7,13 @@ import {MdDelete} from 'react-icons/md';
 import { storage } from "./firebase";
 import db from "./firebase";
 import Geocode from "react-geocode";
+import { useHistory } from 'react-router';
 
 // NEED TO CHECK FOR REQUIRED ONCE CLICKED OR NOT... 
 // That will be done in the next iteration...
 
 function Seller() {
+    const history = useHistory();
     // Property Attributes
     // Location Information
     const [address, setAddress] = useState('');
@@ -51,6 +53,8 @@ function Seller() {
     useEffect(() => {
         if (length !== 0){
             alert('You have successfully uploaded ' + length + ' pictures');
+        } else {
+            setShowImageDiv(false);
         }
     }, [length]);
 
@@ -110,7 +114,6 @@ function Seller() {
             //   const { lat, lng } = response.results[0].geometry.location;
             //   setLatitude(response.results[0].geometry.location.lat);
             //   setLongitude(response.results[0].geometry.location.lng);
-            
                 // Call handle upload function for uploading to the database with the correct lat and lng.
               handleUpload(response.results[0].geometry.location.lat, response.results[0].geometry.location.lng);
             },
@@ -150,7 +153,8 @@ function Seller() {
                         console.log(length);
                         if (counter === length) {
                             // Uploading the property to all the available property tab.
-                            db.collection("availableProperty").add({
+                            const docAvailableProperty = db.collection('availableProperty').doc();
+                            docAvailableProperty.set({
                                 address: address,
                                 city: city,
                                 unitNumber: unitNumber, 
@@ -175,7 +179,7 @@ function Seller() {
                             });
 
                             // Uploading the property to the user tab for my postings tab.
-                            db.collection("users").doc(user?.uid).collection("userSellingProperty").add({
+                            db.collection("users").doc(user?.uid).collection("userSellingProperty").doc(docAvailableProperty.id).set({
                                 address: address,
                                 city: city,
                                 unitNumber: unitNumber, 
@@ -198,6 +202,7 @@ function Seller() {
                                 latitude: lat,
                                 longitude: lng,
                             });
+                            history.push("/my-postings");
                         }
                     });
                 }   
@@ -214,6 +219,21 @@ function Seller() {
                     <div className="media">
                         <h2>Photos</h2>
                         <div id="formInfoMedia">
+                            <div className={showImageDiv ? 'media__preview' : 'media__previewHide'}>
+                                <FaArrowAltCircleLeft className="left-arrow" 
+                                onClick={previousSlide} />
+                                <FaArrowAltCircleRight className="right-arrow" onClick={nexSlide} />
+                                <MdDelete className="delete-icon" onClick={deleteImage}/>
+                                {previewImageState.map((slide, index) => {
+                                    return (
+                                        <div className={index === current ? 'slide active' : 'slide'} key={index}>
+                                            {index === current && (
+                                                <img src={slide} alt='travel image' className="image" />
+                                            )}
+                                        </div>
+                                    )
+                                })}
+                            </div>
                             <label className="custom-file-upload">
                                 <input
                                     type="file"
@@ -225,25 +245,6 @@ function Seller() {
                                 />
                                 <p>Click to upload up to 10 images of your listing</p>
                             </label>
-                            <div className={showImageDiv ? 'media__preview' : 'media__previewHide'}>
-                                
-                                <FaArrowAltCircleLeft className="left-arrow" 
-                                onClick={previousSlide} />
-                                
-                                <FaArrowAltCircleRight className="right-arrow" onClick={nexSlide} />
-
-                                <MdDelete className="delete-icon" onClick={deleteImage}/>
-                               
-                                {previewImageState.map((slide, index) => {
-                                    return (
-                                        <div className={index === current ? 'slide active' : 'slide'} key={index}>
-                                            {index === current && (
-                                                <img src={slide} alt='travel image' className="image" />
-                                            )}
-                                        </div>
-                                    )
-                                })}
-                            </div>
                         </div>
                     </div>
                     <div className="listing__Details">

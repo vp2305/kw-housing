@@ -3,10 +3,12 @@ import "./MyPosting.css";
 import db from "./firebase";
 import { useStateValue } from './StateProvider';
 import { Button } from '@material-ui/core';
+import { useHistory } from 'react-router';
 
 function MyPosting() {
     const [postings, setMyPostings] = useState([]);
     const [{user}] = useStateValue();
+    const history = useHistory();
     useEffect(() => {
         if (user) {
             db
@@ -23,6 +25,11 @@ function MyPosting() {
             );
         }
     },[])
+
+    function viewListing(id) {
+        console.log(id);
+        history.push('/postings-view/' + id);
+    }
 
     return (
         <div className = "myPosting">
@@ -45,7 +52,7 @@ function MyPosting() {
                                     <h4 >Washrooms: {post.data.bathrooms}</h4>
                                 </span>
                                 <p>{post.data.description}</p>
-                                <Button variant="contained" type="primary">View</Button>
+                                <Button variant="contained" type="primary" onClick={()=> viewListing(post.id)}>View</Button>
                             </div>
                         </div>
                     ))}

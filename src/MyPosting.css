@@ -34,6 +34,7 @@
   height: 100%;
   border-radius: 10px;
   flex-direction: row;
+  margin-bottom: 1.5rem;
   /* padding: 5px; */
 }
 
@@ -46,6 +47,7 @@
 
 .post__leftContainer {
   margin-right: 1em;
+  min-width: 30rem;
 }
 
 .post__imageIcon {
@@ -62,6 +64,7 @@
 
 .post__rightContainer {
   width: 65%;
+  height: 100%;
 }
 
 .post__rightContainer > h2 {
@@ -83,7 +86,6 @@
 .post__rightContainer > p {
   margin-top: 0.9rem;
   overflow: auto;
-
   width: 100%;
 }
 .post__rightContainer > Button {

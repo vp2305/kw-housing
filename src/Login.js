@@ -39,20 +39,6 @@ function Login() {
                 type: actionTypes.SET_USER,
                 user: result.user,
             })
-            let fullName = result.user?.displayName;
-            const nameArr = fullName.split(" ");
-
-            db
-            .collection('users')
-            .doc(result.user?.uid)
-            .set({
-                firstName: nameArr[0],
-                lastName: nameArr[1],
-                phone: result.user?.phoneNumber,
-                birthDate: "",
-                email: result.user?.email,
-                userId: result.user?.uid
-            })
             history.push("/")
         })
         .catch(
@@ -68,8 +54,22 @@ function Login() {
                     type: actionTypes.SET_USER,
                     user: result.user,  
                 })
-                history.push("/")
-            })
+                let fullName = result.user?.displayName;
+                const nameArr = fullName.split(" ");
+
+                db
+                .collection('users')
+                .doc(result.user?.uid)
+                .set({
+                    firstName: nameArr[0],
+                    lastName: nameArr[1],
+                    phone: result.user?.phoneNumber,
+                    birthDate: "",
+                    email: result.user?.email,
+                    userId: result.user?.uid
+                })
+                    history.push("/")
+                })
             .catch(
                 console.log("Error occurred")
             );

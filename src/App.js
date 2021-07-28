@@ -12,6 +12,7 @@ import Seller from './Seller';
 import SidebarWindow from './SidebarWindow';
 import SidebarWithChat from './SidebarWithChat';
 import MyPosting from './MyPosting';
+import PostView from './PostView';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -46,6 +47,11 @@ function App() {
             <Login />
           </Route>
 
+          <Route path="/postings-view/:postId">
+            <Header dark />
+            <PostView />
+          </Route>
+
           {!user ? (
             <Route path="/my-postings">
               <Login />
@@ -63,7 +69,7 @@ function App() {
             </Route>
           ) : (
             <Route path="/messages/:roomId">
-              <Header />
+              <Header dark/>
               <SidebarWithChat />
             </Route>
           )}

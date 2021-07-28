@@ -25,4 +25,5 @@
   position: absolute;
   object-fit: cover;
   z-index: -999;
+  opacity: 0.91;
 }
