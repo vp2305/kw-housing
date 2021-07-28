@@ -122,7 +122,7 @@ function HeaderLoggedOut({dark}) {
                             <a onClick={handleDifferentPages} id="sign in">Sign In</a>
                         </li>
                         <li >
-                            <a onClick={handleDifferentPages} id="sign out">Sign Out</a>
+                            <a onClick={handleDifferentPages} id="register">Register</a>
                         </li>
                     </ul>
                 </header>

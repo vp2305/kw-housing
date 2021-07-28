@@ -6,6 +6,9 @@ import "./PostView.css";
 import { Avatar, Button } from '@material-ui/core';
 import { useStateValue } from './StateProvider';
 import firebase from "firebase";
+import { IconButton } from '@material-ui/core';
+import { MdFavorite } from 'react-icons/md';
+import { GrFavorite } from 'react-icons/gr';
 
 function PostView() {
     const {postId} = useParams();
@@ -18,6 +21,20 @@ function PostView() {
     const [{user}] = useStateValue();
     const [alreadyFriend, setAlreadyFriend] = useState(null);
     const [sellerFriends, setSellerFriends] = useState([]);
+    const [fav, setFav] = useState(false);
+    const [userFav, setUserFav] = useState([]);
+
+    useEffect(() => {
+        userFav.map((favDoc)=>{
+            if (fav === false) {
+                if (favDoc.id === postId){
+                    setFav(true);
+                } 
+            }
+        });
+
+    },[userFav])
+
     useEffect(() => {
         
         db
@@ -40,13 +57,21 @@ function PostView() {
         .onSnapshot (snapshot => {
             setFeatures(snapshot.data()?.features);
         })
-
-        console.log(features);
-
+        
     },[postId])
 
     useEffect(() => {
         updateLength();
+        db
+        .collection('users')
+        .doc(user?.uid)
+        .collection('favorites')
+        .onSnapshot (snapshot => {
+            setUserFav(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+            })));
+        })
     },[images])
 
     const nexSlide = () => {
@@ -61,94 +86,178 @@ function PostView() {
         setLength(images.length);
     }
 
-    const userButton = (e) => {
+    const favStatus = () => {
+        console.log(fav);
+        if (fav === false) {
+            db
+            .collection('users')
+            .doc(user?.uid)
+            .collection('favorites')
+            .doc(postId)
+            .set({
+                address: property?.address,
+                city: property?.city,
+                unitNumber: property?.unitNumber, 
+                zipCode: property?.zipCode,
+                listingTitle: property?.listingTitle,
+                bedrooms: property?.bedrooms,
+                bathrooms: property?.bathrooms,
+                description: property?.description,
+                buildingType: property?.buildingType,
+                fromDate: property?.fromDate,
+                rentDuration: property?.rentDuration,
+                leaseType: property?.leaseType,
+                genderSpecification: property?.genderSpecification,
+                pricePerMonth: property?.pricePerMonth,
+                utilityPricePerMonth: property?.utilityPricePerMonth,
+                sellerUID: property?.sellerUID,
+                sellerName: property?.sellerName,
+                features: features,
+                imageURLS: images,
+                latitude: property?.latitude,
+                longitude: property?.longitude,
+            });
+            // alert("Already added to the list");
+            setFav(true);
+        } else { 
+            db
+            .collection('users')
+            .doc(user?.uid)
+            .collection('favorites')
+            .doc(postId)
+            .delete();
+            setFav(false);
+        }
+    }
+
+    const getAllSellerFriends = async () => {
+        
+        if (user){
+            db
+            .collection("users")
+            .doc(property?.sellerUID)
+            .collection("friends")
+            .onSnapshot((snapshot) => {
+                setSellerFriends(snapshot.docs.map((doc) => doc.data()));
+            });
+
+        } else {
+            alert("You need to sign-in before connecting with the seller!");
+        }
+    }
+
+    const alreadyFriendCheck = async () => {
+        if (sellerFriends.length !== 0 ){
+            sellerFriends.map((f)=> {
+                if (f.otherUID === user?.uid){
+                    setAlreadyFriend(true);
+                } else {
+                    setAlreadyFriend(false);
+                }
+            });
+        } else {
+            setAlreadyFriend(false);
+        }
+    }
+
+    const userButton = async (e) => {
         e.preventDefault();
         // We will be going into the database and check to see if the user uid is on the sellers friends tab. If so then return true since they are already friends or else return false.
-        db
-        .collection("users")
-        .doc(property?.sellerUID)
-        .collection("friends")
-        .onSnapshot((snapshot) => {
-            setSellerFriends(snapshot.docs.map((doc) => doc.data()));
-        });
-
+        await getAllSellerFriends();
+        await alreadyFriendCheck();
+        console.log(sellerFriends);
     }
-    useEffect(() => {
-        sellerFriends.map((f)=>{
-            if (f.otherUID === user?.uid){
-                setAlreadyFriend(true);
-            } else {
-                setAlreadyFriend(false);
-            }
-        });
-    },[sellerFriends])
 
     useEffect(() => {
         console.log(alreadyFriend);
-        if (alreadyFriend){
-            alert("You guys are already friends!");
-        } else if (alreadyFriend === false) {
-            newFriend();
+        if (alreadyFriend != null){
+            if (alreadyFriend){
+                alert("You guys are already friends!");
+            } else if (alreadyFriend === false) {
+                newFriend();
+            }
         }
-
     },[alreadyFriend])
 
     const newFriend = () => {
-        const doc = db.collection('users').doc(user?.uid).collection('friends').doc();
-        const otherDoc = db.collection('users').doc(property?.sellerUID).collection('friends').doc();
-        const id = doc.id;
-        const otherId = otherDoc.id;
-        doc.set({
-            name: property?.sellerName,
-            otherUID: property?.sellerUID,
-            otherRoomId: otherId,    
-        });
+        if (message !== ""){
+            const doc = db.collection('users').doc(user?.uid).collection('friends').doc();
+            const otherDoc = db.collection('users').doc(property?.sellerUID).collection('friends').doc();
+            const id = doc?.id;
+            const otherId = otherDoc?.id;
+            
+            doc.set({
+                name: property?.sellerName,
+                otherUID: property?.sellerUID,
+                otherRoomId: otherId,    
+            });
 
-        otherDoc.set({
-            name: user?.displayName,
-            otherUID: user?.uid,
-            otherRoomId: id, 
-        });
-        sendMessage(id, otherId);
-        document.getElementById("messageTextArea").value = "";
+            otherDoc.set({
+                name: user?.displayName,
+                otherUID: user?.uid,
+                otherRoomId: id, 
+            });
+            sendMessage(id, otherId);
+            document.getElementById("messageTextArea").value = "";
+        } else {
+            alert("Please write a message before submitting!");
+        }
     }
 
     const sendMessage = (id, otherId) => {
-        db
-        .collection('users')
-        .doc(user?.uid)
-        .collection('friends')
-        .doc(id)
-        .collection('messages')
-        .add({
-            message: message,
-            name: user?.displayName,
-            email: user?.email,
-            timestamps: firebase.firestore.FieldValue.serverTimestamp(),
-        });
+        if (message !== ""){
+            db
+            .collection('users')
+            .doc(user?.uid)
+            .collection('friends')
+            .doc(id)
+            .collection('messages')
+            .add({
+                message: message,
+                name: user?.displayName,
+                email: user?.email,
+                timestamps: firebase.firestore.FieldValue.serverTimestamp(),
+            });
 
-        db
-        .collection('users')
-        .doc(property?.sellerUID)
-        .collection('friends')
-        .doc(otherId)
-        .collection('messages')
-        .add({
-            message: message,
-            name: user?.displayName,
-            email: user?.email,
-            timestamps: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        alert("Your message is sent!");
+            db
+            .collection('users')
+            .doc(property?.sellerUID)
+            .collection('friends')
+            .doc(otherId)
+            .collection('messages')
+            .add({
+                message: message,
+                name: user?.displayName,
+                email: user?.email,
+                timestamps: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            alert("Your message is sent!");
+        } else {
+            alert("Please write a message before submitting!");
+        }
     }
+
+    
 
     return (
         <div className="postView">
             <div className="postView__wrapper">
                 <div className="postView__flex">
                     <div className="postView__flexLeft">
-                        <h1>{property.listingTitle}</h1>
-                        <p>${property.pricePerMonth} / Month · {property.address} · Bedrooms: {property.bedrooms} · Bathrooms: {property.bathrooms} </p>
+                        <h1>{property.listingTitle} ·
+                            <span onClick = {favStatus}>
+                                {fav ?(
+                                    <IconButton>
+                                        <MdFavorite id = "filled__favIcon"/>
+                                    </IconButton>
+                                ):(
+                                    <IconButton>
+                                        <GrFavorite id = "unFilled__favIcon"/>
+                                    </IconButton>
+                                )}
+                            </span> 
+                        </h1>
+                        <p>${property.pricePerMonth} / Month · {property.address} · Bedrooms: {property.bedrooms} · Bathrooms: {property.bathrooms}</p>
                         
                         <div className="postView__card">
                             <h2>Available Features</h2>

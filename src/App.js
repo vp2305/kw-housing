@@ -13,6 +13,7 @@ import SidebarWindow from './SidebarWindow';
 import SidebarWithChat from './SidebarWithChat';
 import MyPosting from './MyPosting';
 import PostView from './PostView';
+import MyFavorites from './MyFavorites';
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -47,11 +48,31 @@ function App() {
             <Login />
           </Route>
 
-          <Route path="/postings-view/:postId">
-            <Header dark />
-            <PostView />
-          </Route>
+          {!user ? (
+            <Route path="/postings-view/:postId">   
+                <HeaderLoggedOut dark/>
+                <PostView />
+        
+            </Route>
+          ) : (
+            <Route path="/postings-view/:postId">
+                <Header dark />
+                <PostView />
+          
+            </Route>
+          )}
 
+          {!user ? (
+            <Route path="/my-favorites">
+              <Login />
+            </Route>
+          ) : (
+            <Route path="/my-favorites">
+              <Header dark/>
+              <MyFavorites />
+            </Route>
+          )}
+            
           {!user ? (
             <Route path="/my-postings">
               <Login />

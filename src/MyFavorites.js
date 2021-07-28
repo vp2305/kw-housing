@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import "./MyPosting.css";
+import "./MyFavorites.css";
 import db from "./firebase";
 import { useStateValue } from './StateProvider';
 import { Button } from '@material-ui/core';
 import { useHistory } from 'react-router';
 
-function MyPosting() {
-    const [postings, setMyPostings] = useState([]);
+function MyFavorites() {
+    const [myFavorites, setMyFavorites] = useState([]);
     const [{user}] = useStateValue();
     const history = useHistory();
     useEffect(() => {
@@ -14,9 +14,9 @@ function MyPosting() {
             db
             .collection('users')
             .doc(user?.uid)
-            .collection('userSellingProperty')
+            .collection('favorites')
             .onSnapshot((snapshot)=>
-                setMyPostings(
+                setMyFavorites(
                     snapshot.docs.map((doc) => ({
                         id: doc.id,
                         data: doc.data(),
@@ -30,14 +30,13 @@ function MyPosting() {
         console.log(id);
         history.push('/postings-view/' + id);
     }
-
     return (
-        <div className = "myPosting">
+        <div className="myPosting">
             <div className = "myPosting__wrapper">
-                <h2>My Postings</h2>
+                <h2>My Favorites</h2>
                 <hr/>
                 <div className = "post__wrapper">
-                    {postings.map((post) => (
+                    {myFavorites.map((post) => (
                         <div className = "post__container">
                             <div className = "post__leftContainer">
                                 <img src = {post.data.imageURLS[0]} alt = "" className="post__image"/>
@@ -62,4 +61,4 @@ function MyPosting() {
     )
 }
 
-export default MyPosting;
+export default MyFavorites;

@@ -21,7 +21,7 @@ function Header({dark}) {
                 console.log(e);
             }
         } else if (value === "my favorites"){
-            history.push("/");
+            history.push("/my-favorites");
             try{
                 checkbox.checked=false;
             } catch(e){
@@ -92,17 +92,20 @@ function Header({dark}) {
                             <a onClick={handleDifferentPages} id="home">Home</a>
                         </li>
                         <li >
-                            <a onClick={handleDifferentPages} id="my favorites" >My Favorites</a>
-                        </li>
-                        <li >
-                            <a onClick={handleDifferentPages} id="my posting" >My Postings</a>
-                        </li>
-                        <li >
                             <a onClick={handleDifferentPages} id="browse listings" >Browse Listings</a>
                         </li>
                         <li >
                             <a onClick={handleDifferentPages} id="post new listing" >Post New Listing</a>
                         </li>
+                        
+                        <li >
+                            <a onClick={handleDifferentPages} id="my posting" >My Postings</a>
+                        </li>
+                        <li >
+                            <a onClick={handleDifferentPages} id="my favorites" >My Favorites</a>
+                        </li>
+                        
+                        
                         <li >
                             <a onClick={handleDifferentPages} id="messages">Messages</a>
                         </li>
@@ -130,17 +133,19 @@ function Header({dark}) {
                             <a onClick={handleDifferentPages} id="home">Home</a>
                         </li>
                         <li >
-                            <a onClick={handleDifferentPages} id="my favorites" >My Favorites</a>
-                        </li>
-                        <li >
-                            <a onClick={handleDifferentPages} id="my posting" >My Postings</a>
-                        </li>
-                        <li >
                             <a onClick={handleDifferentPages} id="browse listings" >Browse Listings</a>
                         </li>
                         <li >
                             <a onClick={handleDifferentPages} id="post new listing" >Post New Listing</a>
                         </li>
+                        
+                        <li >
+                            <a onClick={handleDifferentPages} id="my posting" >My Postings</a>
+                        </li>
+                        <li >
+                            <a onClick={handleDifferentPages} id="my favorites" >My Favorites</a>
+                        </li>
+                        
                         <li >
                             <a onClick={handleDifferentPages} id="messages">Messages</a>
                         </li>

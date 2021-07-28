@@ -8,7 +8,7 @@
   padding-top: 5.8rem;
 }
 
-.myPosting__wrapper > h1 {
+.myPosting__wrapper > h2 {
   display: block;
   width: fit-content;
   margin: auto;
@@ -35,7 +35,7 @@
   border-radius: 10px;
   flex-direction: row;
   margin-bottom: 1.5rem;
-  /* padding: 5px; */
+  padding: 20px;
 }
 
 .post__image {

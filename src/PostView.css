@@ -25,16 +25,20 @@
 }
 
 .postView-image {
+  display: relative;
   width: 100%;
-  height: 100%;
+  max-height: 800px;
   border-radius: 10px;
   image-resolution: smooth;
   object-fit: contain;
 }
 
 #postView__Media {
-  width: 100%;
   border-radius: 10px;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .postView_media__preview {
@@ -60,12 +64,21 @@
   margin-top: 1rem;
 }
 
+.postView__card > h2 {
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  width: fit-content;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
 .postView__card {
+  display: block;
   width: 100%;
-  height: 15rem;
+  height: 23em;
   margin-top: 2.5rem;
   border-radius: 20px;
-  padding: 20px;
 }
 
 .message__card {
@@ -77,21 +90,15 @@
   border: 1px solid gray;
 }
 
-.postView__card > h2 {
-  font-weight: 600;
-  font-size: 1.3rem;
-  text-transform: capitalize;
-  width: fit-content;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
 .postView__featuresContainer {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  max-height: 100% !important;
   flex-direction: column;
+}
+
+.postView__featuresContainer > * {
+  flex: 1 1 21px;
 }
 
 .postView__featuresContainer > p {
@@ -213,4 +220,13 @@
   line-height: 23px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.87);
+}
+
+#filled__favIcon {
+  color: red;
+  font-size: 1.5rem;
+}
+
+#unFilled__favIcon {
+  font-size: 1.5rem;
 }
