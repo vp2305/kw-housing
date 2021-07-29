@@ -1,5 +1,41 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+/*Utility Classes*/
+.text-grey {
+  color: #a1a1a6;
+  font-size: 0.9rem;
+}
+
+.subheading {
+  padding: 3px 0px;
+
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+#form-info-media {
+  margin-top: 10px;
+}
+
+/*Remaining css*/
+input {
+  background-color: #f5f5f5;
+}
+
+h2 {
+  font-weight: bold;
+}
+
 .seller {
   margin-top: -100px;
+  background: #fff;
+  /*background-image: linear-gradient(189deg, #f5f7fa 0%, #c3cfe2 100%);*/
+}
+
+.media input {
+  color: #f5f5f5;
 }
 .seller__wrapper {
   width: 100%;
@@ -10,14 +46,28 @@
   display: block;
   width: fit-content;
   margin: auto;
-  font-weight: 500;
+  /*font-weight: 400;*/
+  padding-top: 20px;
   margin-top: 100px;
+
+  /*
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 10px;
+  */
 }
 
 .seller__wrapper > hr {
   display: block;
   width: 85%;
   margin: 15px auto;
+}
+
+hr {
+  display: block;
+  /*margin: 15px auto;*/
+  margin: 40px 0px;
+  color: #a1a1a6;
 }
 
 .newPostingForm {
@@ -45,7 +95,7 @@
   height: 40px;
   border-radius: 5px;
   padding: 0px 10px;
-  border: 1px solid rgb(168, 168, 168);
+  border: 0px solid rgb(168, 168, 168);
   margin-top: 10px;
 }
 
@@ -67,7 +117,7 @@
   height: 40px;
   border-radius: 5px;
   padding: 0px 10px;
-  border: 1px solid gray;
+  border: 0px solid gray;
   margin-top: 10px;
 }
 
@@ -129,6 +179,7 @@
   padding-left: 10px;
   padding-top: 10px;
   font-size: 1.2em;
+
   margin-top: 10px;
 }
 
@@ -141,12 +192,14 @@ input[type="file"] {
   display: none;
 }
 .custom-file-upload {
-  border: 2px dashed rgb(0, 26, 255);
+  border: 0px dashed rgb(0, 26, 255);
+  border-radius: 5px;
+  background-color: #f5f5f5;
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 10px;
   height: 90%;
   cursor: pointer;
-  width: 98%;
+  width: 100%;
   margin: auto;
 }
 
