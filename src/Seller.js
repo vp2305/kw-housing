@@ -230,7 +230,7 @@ function Seller() {
                   multiple
                   onChange={onImageChange}
                 />
-                <p>Click to upload up to 10 images of your listing</p>
+                <p className="text-grey">Click to upload up to 10 images</p>
               </label>
               <div
                 className={
