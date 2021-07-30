@@ -8,7 +8,7 @@
   padding: 20px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .chat__headerInfo {
@@ -18,12 +18,12 @@
 
 .chat__headerInfo > h3 {
   margin-bottom: 3px;
-  font-weight: 500;
-  color: white;
+  font-weight: 650;
+  color: black;
 }
 
 .chat__headerInfo > p {
-  color: rgb(209, 208, 208);
+  color: rgba(0, 0, 0, 0.98);
 }
 
 .chat__headerRight {
@@ -41,13 +41,14 @@
   padding-bottom: 45px;
   overflow: auto;
   border: none;
+  margin-bottom: 30px;
 }
 
 .chat__message {
   position: relative;
   font-size: 16px;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #ffff;
   border-radius: 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -56,7 +57,9 @@
 
 .chat__reciever {
   margin-left: auto;
-  background-color: #dcf8c6;
+  /* background-color: #dcf8c6; */
+  background-color: #829bd4;
+  color: white;
 }
 
 .chat__name {
@@ -64,7 +67,7 @@
   top: -15px;
   font-weight: 500;
   font-size: xx-small;
-  color: white;
+  color: rgba(0, 0, 0, 1);
 }
 
 .chat__timestamp {
@@ -75,7 +78,7 @@
 .chat__footer > .MuiButtonBase-root,
 .chat__headerRight > .MuiButtonBase-root {
   padding: 10px;
-  color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.98);
 }
 
 .chat__footer {
@@ -90,13 +93,26 @@
 .chat__footer > form {
   flex: 1;
   display: flex;
+  margin-bottom: 30px;
 }
 .chat__footer > form > input {
   flex: 1;
-  border-radius: 30px;
+  border-radius: 10px;
+  height: 50px;
   padding: 10px;
   border: none;
 }
+
+.chat__footer > form > input:focus {
+  outline: none;
+}
+
 .chat__footer > form > button {
   display: none;
+}
+
+.chat__footer > .MuiButtonBase-root {
+  margin-bottom: 30px;
+  padding: 0px 20px;
+  height: 100%;
 }
