@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import "./Home.css";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 
 function Home() {
     return (
@@ -19,7 +19,7 @@ function Home() {
                 </div>
             </div>
         </div>
-    )
+  );
 }
 
 export default Home;

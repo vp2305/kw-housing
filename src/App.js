@@ -14,32 +14,30 @@ import SidebarWithChat from './SidebarWithChat';
 import MyPosting from './MyPosting';
 import PostView from './PostView';
 import MyFavorites from './MyFavorites';
-
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      if (authUser){
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
         // the user just logged in / the user was logged in
         dispatch({
-          type: 'SET_USER',
-          user: authUser
-        })
+          type: "SET_USER",
+          user: authUser,
+        });
       } else {
         // the user is logged out
         dispatch({
-          type: 'SET_USER',
-          user: null
-        })
+          type: "SET_USER",
+          user: null,
+        });
       }
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <div className="App">
       <Router>
         <Switch>
-          
           <Route path="/register">
             <Register />
           </Route>
@@ -124,15 +122,15 @@ function App() {
           {!user ? (
             <Route path="/">
               <div className="home__background">
-                <img src="/Images/Home/image01.jpg" alt = "" />
-                <HeaderLoggedOut/>
+                <img src="/Images/Home/image01.jpg" alt="" />
+                <HeaderLoggedOut />
                 <Home />
               </div>
             </Route>
           ) : (
             <Route path="/">
               <div className="home__background">
-                <img src="/Images/Home/image01.jpg" alt = "" />
+                <img src="/Images/Home/image01.jpg" alt="" />
                 <Header />
                 <Home />
               </div>

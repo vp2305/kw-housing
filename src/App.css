@@ -25,5 +25,5 @@
   position: absolute;
   object-fit: cover;
   z-index: -999;
-  opacity: 0.91;
+  background-color: RGBA(0, 0, 0, 0.1);
 }
