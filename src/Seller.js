@@ -214,7 +214,7 @@ function Seller() {
   return (
     <div className="seller">
       <div className="seller__wrapper">
-        <h2>Post Your Ad</h2>
+        <h2 className="title">Post Your Ad</h2>
 
         <form className="newPostingForm">
           <div className="media">
@@ -265,7 +265,8 @@ function Seller() {
             </div>
           </div>
           <div className="listing__Details">
-            <h2>Listing Details</h2>
+            <p className="subheading">Listing Details</p>
+            <p className="text-grey">Fill out the following section</p>
             <div id="formInfo">
               <label>Listing Title (Max 60 Characters)</label>
               <input
@@ -489,7 +490,8 @@ function Seller() {
             </div>
           </div>
           <div className="rental__Details">
-            <h2>Rental Details</h2>
+            <p className="subheading">Lease Details</p>
+            <p className="text-grey">Fill out lease specifications</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
                 <label>From Date</label>
@@ -501,13 +503,16 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Lease Type</label>
-                <input
-                  type="text"
-                  className="seller__inputFieldFlex"
-                  placeholder="Drop Down"
+                <label for="lease">Lease Type</label>
+                <select
+                  id="lease"
+                  className="dropdown"
+                  placeholder="Select"
                   onChange={(e) => setLeaseType(e.target.value)}
-                />
+                >
+                  <option value="Monthly">Monthly</option>
+                  <option value="Yearly">Yearly</option>
+                </select>
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Rent Duration (Month)</label>
@@ -533,7 +538,8 @@ function Seller() {
             </div>
           </div>
           <div className="price__Details">
-            <h2>Price Details</h2>
+            <p className="subheading">Price</p>
+            <p className="text-grey">All prices in CAD</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
                 <label>Price/Month $</label>
