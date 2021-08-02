@@ -13,11 +13,22 @@
 }
 
 .home__title > h2 {
-  color: #dfdfdf;
+  color: #000000;
   margin: auto;
   text-align: center;
   font-weight: bold;
   font-size: 3rem;
+  width: 100%;
+  position: relative;
+}
+
+.home__subtitle > h1 {
+  color: #3e3d3d;
+  margin: auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  font-family:monospace;
   width: 100%;
   position: relative;
 }

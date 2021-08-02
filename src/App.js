@@ -124,7 +124,7 @@ function App() {
           {!user ? (
             <Route path="/">
               <div className="home__background">
-                <img src="/Images/Home/image01.jpg" alt = "" />
+                <img src="/Images/Home/skyline.gif" alt = "" />
                 <HeaderLoggedOut/>
                 <Home />
               </div>
@@ -132,7 +132,7 @@ function App() {
           ) : (
             <Route path="/">
               <div className="home__background">
-                <img src="/Images/Home/image01.jpg" alt = "" />
+                <img src="/Images/Home/skyline.gif" alt = "" />
                 <Header />
                 <Home />
               </div>
