@@ -340,12 +340,14 @@ function Seller() {
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Building Type</label>
-                <input
-                  type="text"
-                  className="seller__inputFieldFlex"
-                  placeholder="Drop down"
+                <select
+                  className="dropdown"
+                  placeholder="Select"
                   onChange={(e) => setBuildingType(e.target.value)}
-                />
+                >
+                  <option value="Apartment">Apartment</option>
+                  <option value="House">House</option>
+                </select>
               </div>
             </div>
             <div id="formInfo">
@@ -528,13 +530,17 @@ function Seller() {
             </div>
             <div id="formInfo">
               <label>Gender Specification</label>
-              <input
-                type="text"
-                className="seller__inputFieldFlex"
+              <select
                 id="genderSpecific"
-                placeholder="Drop Down"
+                className="seller__inputFieldFlex"
+                className="dropdown"
+                placeholder="Select"
                 onChange={(e) => setGenderSpecification(e.target.value)}
-              />
+              >
+                <option value="Co-Ed">Co-Ed</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
           </div>
           <div className="price__Details">

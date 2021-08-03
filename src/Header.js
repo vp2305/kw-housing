@@ -133,7 +133,7 @@ function Header({ dark }) {
       <header className={header ? "header active" : "header"}>
         <div className="header__logoContainer">
           <img
-            src="/Images/Header/bgblack.png"
+            src="/Images/Header/bgwhite.png"
             height="80"
             width="80"
             alt=""
