@@ -47,7 +47,7 @@
 
 .post__leftContainer {
   margin-right: 1em;
-  min-width: 30rem;
+  width: 30rem;
 }
 
 .post__imageIcon {
@@ -96,7 +96,7 @@
   margin: 20px;
   margin-left: 0px !important;
   font-size: 16px !important;
-  color: #dfdfdf !important;
+  color: white !important;
 }
 
 .post__wrapper > p {
@@ -111,5 +111,5 @@
   background-color: #3399ff !important;
   margin: 20px;
   font-size: 16px !important;
-  color: #dfdfdf !important;
+  color: white !important;
 }

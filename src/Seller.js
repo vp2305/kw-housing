@@ -8,55 +8,90 @@ import { storage } from "./firebase";
 import db from "./firebase";
 import Geocode from "react-geocode";
 import { useHistory } from 'react-router';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 // NEED TO CHECK FOR REQUIRED ONCE CLICKED OR NOT...
 // That will be done in the next iteration...
 
 function Seller() {
-    const history = useHistory();
-    // Property Attributes
-    // Location Information
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [unitNumber, setUnitNumber] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    // Listing Details
-    const [listingTitle, setListingTitle] = useState('');
-    const [bedrooms, setBedrooms] = useState(0);
-    const [bathrooms, setBathrooms] = useState(0);
-    const [description, setDescription] = useState('');
-    const [features, setFeatures] = useState([]);
-    const [buildingType, setBuildingType] = useState('');
-    // Rental Agreement Details
-    const [fromDate, setFromDate] = useState(0);
-    const [rentDuration, setRentDuration] = useState(0);
-    const [leaseType, setLeaseType] = useState('');
-    const [genderSpecification, setGenderSpecification] = useState('');
-    //Price Details
-    const [pricePerMonth, setPricePerMonth] = useState(0);
-    const [utilityPricePerMonth, setUtilityPricePerMonth] = useState(0);
-    // Media posting and its condition handling
-    const [previewImageState] = useState([]);
-    const [current, setCurrent] = useState(0);
-    const [length, setLength] = useState(0);
-    const [showImageDiv, setShowImageDiv] = useState(false);
-    const [finalImageState] = useState([]);
-    const [imageURLS] = useState([])
-
-  // Additional info about the place (stored in database) that will help us later on for placing markers
+  const history = useHistory();
+  // Property Attributes
+  // Location Information
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [unitNumber, setUnitNumber] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  // Listing Details
+  const [listingTitle, setListingTitle] = useState('');
+  const [bedrooms, setBedrooms] = useState(0);
+  const [bathrooms, setBathrooms] = useState(0);
+  const [description, setDescription] = useState('');
+  const [features, setFeatures] = useState([]);
+  const [buildingType, setBuildingType] = useState('');
+  // Rental Agreement Details
+  const [fromDate, setFromDate] = useState(0);
+  const [rentDuration, setRentDuration] = useState(0);
+  const [leaseType, setLeaseType] = useState('');
+  const [genderSpecification, setGenderSpecification] = useState('');
+  //Price Details
+  const [pricePerMonth, setPricePerMonth] = useState(0);
+  const [utilityPricePerMonth, setUtilityPricePerMonth] = useState(0);
+  // Media posting and its condition handling
+  const [previewImageState] = useState([]);
+  const [current, setCurrent] = useState(0);
+  const [length, setLength] = useState(0);
+  const [showImageDiv, setShowImageDiv] = useState(false);
+  const [finalImageState] = useState([]);
+  const [imageURLS] = useState([]);
   const [{ user }] = useStateValue();
 
-    useEffect(() => {
-        if (length !== 0){
-            alert('You have successfully uploaded ' + length + ' pictures');
-        } else {
-            setShowImageDiv(false);
-        }
-    }, [length]);
+  const [rentDisableStatus, setRentDisableStatus] = useState(true);
 
   Geocode.setApiKey("AIzaSyDkBnNjsz_3xo2YC6M3Dygcf8kWFZzqm9w");
   Geocode.setLanguage("en");
   Geocode.setRegion("ca");
+
+  const buildingType_option = [
+    'Apartment/Condo', 'Detached House', 'Townhouse'
+  ];
+
+  const leaseType__option = [
+    '4 Month Sublet', '8 Month Sublet', 'Lease'
+  ];
+
+  const coed__option = [
+    'Coed', 'Female Only', 'Male Only'
+  ];
+
+  const buildingTypeChange = (e) => {
+    setBuildingType(e.value);
+  }
+
+  const leaseTypeChange = (e) => {
+    setLeaseType(e.value);
+    if (e.value === 'Lease'){
+      setRentDisableStatus(false);
+    } else {
+      setRentDisableStatus(true);
+      document.getElementById("rentDurationInput").value = "";
+      setRentDuration("");
+    }
+  }
+
+  const coedTypeChange = (e) => {
+    setGenderSpecification(e.value);
+  }
+
+  useEffect(() => {
+      if (length !== 0){
+          alert('You have successfully uploaded ' + length + ' pictures');
+      } else {
+          setShowImageDiv(false);
+      }
+  }, [length]);
+
+
 
   const nexSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -106,6 +141,7 @@ function Seller() {
 
   const postListing = (event) => {
     event.preventDefault();
+    alert("Please wait while your listing is posted!");
     getLat_lng(address);
   };
 
@@ -322,12 +358,17 @@ function Seller() {
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Building Type</label>
-                <input
-                  type="text"
-                  className="seller__inputFieldFlex"
-                  placeholder="Drop down"
-                  onChange={(e) => setBuildingType(e.target.value)}
-                />
+                
+                <div className="inputFieldFlex__DropDown">
+                  <Dropdown 
+                    className="dropDown"
+                    options={buildingType_option}
+                    placeholder="Select One"
+                    value = {buildingType}
+                    onChange={buildingTypeChange}
+                  />
+                </div>
+
               </div>
             </div>
             <div id="formInfo">
@@ -485,34 +526,43 @@ function Seller() {
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Lease Type</label>
-                <input
-                  type="text"
-                  className="seller__inputFieldFlex"
-                  placeholder="Drop Down"
-                  onChange={(e) => setLeaseType(e.target.value)}
-                />
+                
+                <div className="inputFieldFlex__DropDown">
+                  <Dropdown 
+                    className="dropDown"
+                    options={leaseType__option}
+                    placeholder="Select One"
+                    value = {leaseType}
+                    onChange={leaseTypeChange}
+                  />
+                </div>
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Rent Duration (Month)</label>
                 <input
+                  disabled = {rentDisableStatus}
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"
                   min="0"
                   max="200"
-                  onChange={(e) => setRentDuration(e.target.value)}
+                  id = "rentDurationInput"
+                  onChange={(e) => setRentDuration(e.target.value + " Months")}
                 />
               </div>
             </div>
             <div id="formInfo">
               <label>Gender Specification</label>
-              <input
-                type="text"
-                className="seller__inputFieldFlex"
-                id="genderSpecific"
-                placeholder="Drop Down"
-                onChange={(e) => setGenderSpecification(e.target.value)}
-              />
+              
+              <div className="inputFieldFlex__Coed">
+                  <Dropdown 
+                    className="dropDown"
+                    options={coed__option}
+                    placeholder="Select One"
+                    value = {genderSpecification}
+                    onChange={coedTypeChange}
+                  />
+                </div>
             </div>
           </div>
           <div className="price__Details">
@@ -524,7 +574,7 @@ function Seller() {
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"
-                  min="0"
+                  min="100"
                   max="10000"
                   onChange={(e) => setPricePerMonth(e.target.value)}
                 />
@@ -536,7 +586,7 @@ function Seller() {
                   className="seller__inputFieldFlex"
                   placeholder="0"
                   min="0"
-                  max="10000"
+                  max="1000"
                   onChange={(e) => setUtilityPricePerMonth(e.target.value)}
                 />
               </div>

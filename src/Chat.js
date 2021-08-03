@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AttachFile, SearchOutlined } from '@material-ui/icons';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import MicIcon from '@material-ui/icons/Mic';
+import SendIcon from '@material-ui/icons/Send';
 import { useParams } from 'react-router-dom';
 import db from './firebase';
 import firebase from "firebase";
@@ -145,7 +145,7 @@ function Chat() {
                     <button onClick={sendMessage} type="submit">Send a message</button>
                 </form>
                 <IconButton >
-                    <MicIcon />
+                    <SendIcon onClick={sendMessage}/>
                 </IconButton>
             </div>
         </div>

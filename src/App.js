@@ -14,6 +14,7 @@ import SidebarWithChat from './SidebarWithChat';
 import MyPosting from './MyPosting';
 import PostView from './PostView';
 import MyFavorites from './MyFavorites';
+import Buyer from './Buyer';
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
@@ -46,6 +47,19 @@ function App() {
             <Login />
           </Route>
 
+          {!user ? (
+            <Route path="/browse-listing">   
+                <HeaderLoggedOut dark/>
+                <Buyer />
+        
+            </Route>
+          ) : (
+            <Route path="/browse-listing">
+                <Header dark />
+                <Buyer />
+            </Route>
+          )}
+          
           {!user ? (
             <Route path="/postings-view/:postId">   
                 <HeaderLoggedOut dark/>

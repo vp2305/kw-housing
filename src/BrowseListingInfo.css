@@ -1,0 +1,71 @@
+.browsePost__Container {
+  width: 95%;
+  height: 40%;
+
+  border-radius: 10px;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.browsePost-image {
+  border-radius: 10px;
+  image-resolution: smooth;
+  object-fit: contain;
+  width: 100%;
+  max-height: 260px;
+}
+
+.browsePost__leftContainer {
+  flex: 0.5;
+}
+.browsePost__rightContainer {
+  flex: 0.5;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.browsePost_media__preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.browsePost__rightContainer {
+  margin: 0px 20px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.browsePost__bedroom__washroom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bedroom__span,
+.washroom__span {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bedroom__span > h4,
+.washroom__span > h4 {
+  margin: 24px 5px;
+}
+
+.washroom__span {
+  margin: 0px 3rem;
+}
+
+.browsePost__rightContainer > h2 {
+  margin-bottom: 10px;
+}

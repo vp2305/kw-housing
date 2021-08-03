@@ -332,7 +332,7 @@ function PostView() {
                                 <img src="https://img.icons8.com/material-outlined/28/000000/hourglass--v2.png"/>
                                 <div className="postView_columnItemLine2">
                                     <p id = "columnLine1">Rent Duration</p>
-                                    <p>{property?.rentDuration} Months</p>
+                                    <p>{property?.rentDuration}</p>
                                 </div>
                             </div>
                             <div className="postView_columnItem">

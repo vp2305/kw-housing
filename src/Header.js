@@ -35,6 +35,7 @@ function Header({dark}) {
                 console.log(e);
             }
         } else if (value === "browse listings"){
+            history.push("/browse-listing");
             try{
                 checkbox.checked=false;
             } catch(e){
