@@ -7,14 +7,17 @@ function Home() {
         <div className="Home">
             <div className="bot__container">
                 <div className="home__title">
-                    <h2>Housing Marketplace for <br/> Kitchener Waterloo Region</h2>
+                    <h2>KW Housing</h2>
+                    <div className="home__subtitle">
+                    <h1>Housing Marketplace for Kitchener Waterloo Region</h1>
                     <div className="buttonContainer">
-                        <Button variant="contained" type="primary">
-                            Browse Listing
-                        </Button>
-                        <Button variant="contained" type="primary">
-                            Post Listing
-                        </Button>
+                            <Button variant="contained" type="primary">
+                                Browse Listing
+                            </Button>
+                            <Button variant="contained" type="primary">
+                                Post Listing
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

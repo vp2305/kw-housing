@@ -250,89 +250,107 @@ function Seller() {
   return (
     <div className="seller">
       <div className="seller__wrapper">
-        <h2>New Posting</h2>
-        <hr />
+        <h2 className="title">Post Your Ad</h2>
+
         <form className="newPostingForm">
           <div className="media">
-            <h2>Photos</h2>
+            <p className="subheading">Photos</p>
+            <p className="text-grey">Upload pictures of your place</p>
             <div id="formInfoMedia">
-              <div className={showImageDiv ? 'media__preview' : 'media__previewHide'}>
-                  <FaArrowAltCircleLeft className="left-arrow" 
-                  onClick={previousSlide} />
-                  <FaArrowAltCircleRight className="right-arrow" onClick={nexSlide} />
-                  <MdDelete className="delete-icon" onClick={deleteImage}/>
-                  {previewImageState.map((slide, index) => {
-                      return (
-                          <div className={index === current ? 'slide active' : 'slide'} key={index}>
-                              {index === current && (
-                                  <img src={slide} alt='travel image' className="image" />
-                              )}
-                          </div>
-                      )
-                  })}
-              </div>
               <label className="custom-file-upload">
-                  <input
-                      type="file"
-                      className="seller__inputFieldFlex"
-                      name="media"
-                      accept="image/*"
-                      multiple
-                      onChange={onImageChange}
-                  />
-                  <p>Click to upload up to 10 images of your listing</p>
+                <input
+                  type="file"
+                  className="seller__inputFieldFlex"
+                  name="media"
+                  accept="image/*"
+                  multiple
+                  onChange={onImageChange}
+                />
+                <p className="text-grey">Click to upload up to 10 images</p>
               </label>
+              <div
+                className={
+                  showImageDiv ? "media__preview" : "media__previewHide"
+                }
+              >
+                <FaArrowAltCircleLeft
+                  className="left-arrow"
+                  onClick={previousSlide}
+                />
+
+                <FaArrowAltCircleRight
+                  className="right-arrow"
+                  onClick={nexSlide}
+                />
+
+                <MdDelete className="delete-icon" onClick={deleteImage} />
+
+                {previewImageState.map((slide, index) => {
+                  return (
+                    <div
+                      className={index === current ? "slide active" : "slide"}
+                      key={index}
+                    >
+                      {index === current && (
+                        <img src={slide} alt="travel image" className="image" />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className="listing__Details">
-            <h2>Listing Details</h2>
+            <p className="subheading">Listing Details</p>
+            <p className="text-grey">Fill out the following section</p>
             <div id="formInfo">
               <label>Listing Title (Max 60 Characters)</label>
               <input
-                  type="text"
-                  className="seller__inputField"
-                  placeholder="Eg. Well furnished 2 bedroom apartment"
-                  onChange={e => setListingTitle(e.target.value)}
+                type="text"
+                className="seller__inputField"
+                placeholder="Eg. Well furnished 2 bedroom apartment"
+                onChange={(e) => setListingTitle(e.target.value)}
               />
             </div>
             <div id="formInfo">
               <label>Address</label>
               <input
-                  type="text"
-                  className="seller__inputField"
-                  placeholder="Enter the address"
-                  onChange={e => setAddress(e.target.value)}
+                type="text"
+                className="seller__inputField"
+                placeholder="Enter the address"
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
-                  <label>Unit Number</label>
-                  <input
-                      type="text"
-                      className="seller__inputFieldFlex"
-                      placeholder="Eg. 150"
-                      onChange = {e => setUnitNumber(e.target.value)}
-                  />
-                </div>
-              <div id="sellerFormInfoFlex">
-                  <label>City Name</label>
-                  <input
-                      type="text"
-                      className="seller__inputFieldFlex"
-                      placeholder="Eg. Kitchener"
-                      onChange={e => setCity(e.target.value)}
-                  />
+                <label>Unit Number</label>
+                <input
+                  type="text"
+                  className="seller__inputFieldFlex"
+                  placeholder="Eg. 150"
+                  onChange={(e) => setUnitNumber(e.target.value)}
+                />
               </div>
               <div id="sellerFormInfoFlex">
-                  <label>Zip Code</label>
-                  <input
-                      type="text"
-                      className="seller__inputFieldFlex"
-                      placeholder="Eg. N2A"
-                      onChange={e => setZipCode(e.target.value)}
-                  />
+                <label>City Name</label>
+                <input
+                  type="text"
+                  className="seller__inputFieldFlex"
+                  placeholder="Eg. Kitchener"
+                  onChange={(e) => setCity(e.target.value)}
+                />
+              </div>
+              <div id="sellerFormInfoFlex">
+                <label>Zip Code</label>
+                <input
+                  type="text"
+                  className="seller__inputFieldFlex"
+                  placeholder="Eg. N2A"
+                  onChange={(e) => setZipCode(e.target.value)}
+                />
               </div>
             </div>
+
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
                 <label>Bedrooms</label>
@@ -358,7 +376,6 @@ function Seller() {
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Building Type</label>
-                
                 <div className="inputFieldFlex__DropDown">
                   <Dropdown 
                     className="dropDown"
@@ -368,7 +385,6 @@ function Seller() {
                     onChange={buildingTypeChange}
                   />
                 </div>
-
               </div>
             </div>
             <div id="formInfo">
@@ -513,7 +529,8 @@ function Seller() {
             </div>
           </div>
           <div className="rental__Details">
-            <h2>Rental Details</h2>
+            <p className="subheading">Lease Details</p>
+            <p className="text-grey">Fill out lease specifications</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
                 <label>From Date</label>
@@ -526,7 +543,6 @@ function Seller() {
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Lease Type</label>
-                
                 <div className="inputFieldFlex__DropDown">
                   <Dropdown 
                     className="dropDown"
@@ -536,6 +552,7 @@ function Seller() {
                     onChange={leaseTypeChange}
                   />
                 </div>
+                
               </div>
               <div id="sellerFormInfoFlex">
                 <label>Rent Duration (Month)</label>
@@ -553,7 +570,6 @@ function Seller() {
             </div>
             <div id="formInfo">
               <label>Gender Specification</label>
-              
               <div className="inputFieldFlex__Coed">
                   <Dropdown 
                     className="dropDown"
@@ -566,7 +582,8 @@ function Seller() {
             </div>
           </div>
           <div className="price__Details">
-            <h2>Price Details</h2>
+            <p className="subheading">Price</p>
+            <p className="text-grey">All prices in CAD</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
                 <label>Price/Month $</label>

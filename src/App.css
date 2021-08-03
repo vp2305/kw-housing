@@ -4,6 +4,7 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
   transition: all 0.3s ease-in-out;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
 .App {
@@ -23,7 +24,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
-  object-fit: cover;
+  object-fit: contain;
   z-index: -999;
   background-color: RGBA(0, 0, 0, 0.1);
 }
