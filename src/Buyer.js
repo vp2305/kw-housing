@@ -71,7 +71,8 @@ function Buyer() {
 
     const searchListing = (e) => { 
         const tempProperty = [];
-        if ((maxBudget !== -1 || rooms !== "" || coed !== "" || leaseType !== "") && maxBudget !== "") {
+        console.log(maxBudget);
+        if (maxBudget !== "" || rooms !== "" || coed !== "" || leaseType !== "") {
             storedListing.map((post) => {
                 if (post.data.pricePerMonth <= maxBudget || post.data.bedrooms === rooms || post.data.genderSpecification === coed || post.data.leaseType === leaseType){
                     tempProperty.push(post);
