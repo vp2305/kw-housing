@@ -45,6 +45,7 @@ function Seller() {
   const [finalImageState] = useState([]);
   const [imageURLS] = useState([]);
   const [{ user }] = useStateValue();
+  const [buttonState, setButtonState] = useState(false);
 
   const [rentDisableStatus, setRentDisableStatus] = useState(true);
 
@@ -141,7 +142,9 @@ function Seller() {
 
   const postListing = (event) => {
     event.preventDefault();
-    alert("Please wait while your listing is posted!");
+    alert("Your posting will be available in few minutes!");
+    setButtonState(true);
+    history.push("/browse-listing");
     getLat_lng(address);
   };
 
@@ -158,7 +161,6 @@ function Seller() {
         (error) => {
           console.error(error);
         }
-        
     );
   };
 
@@ -239,7 +241,6 @@ function Seller() {
                             latitude: lat,
                             longitude: lng,
                         });
-                        history.push("/my-postings");
                     }
                 });
             }   
@@ -615,6 +616,7 @@ function Seller() {
               type="primary"
               className="postButton"
               onClick={postListing}
+              disabled={buttonState}
             >
               Post Listing
             </Button>

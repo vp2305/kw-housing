@@ -13,7 +13,9 @@ function Buyer() {
     const [leaseType, setLeaseType] = useState('');
     const [property, setProperty] = useState([]);
     const [noListings, setNoListings] = useState(false);
-    
+    const [maxBudget, setMaxBudget] = useState(-1);
+    const [storedListing, setStoredListing] = useState([]);
+    const [storedListingStatus, setStoredListingStatus] = useState(false);
 
     const room__option = [
         '1','2','3','4','5'
@@ -26,7 +28,7 @@ function Buyer() {
     const leaseType__option = [
         '4 Month Sublet', '8 Month Sublet', 'Lease'
     ];
-   
+
     const roomChange = (e) => {
         setRooms(e.value);
     }
@@ -57,9 +59,38 @@ function Buyer() {
             setNoListings(true);
         } else {
             setNoListings(false);
+            if (storedListingStatus === false && storedListing.length === 0) {
+                console.log("Initialized Stored Listings");
+                console.log(property);
+                setStoredListing(property);
+                setStoredListingStatus(true);
+            }
         }
-    },[property]);
+    }, [property]);
 
+
+    const searchListing = (e) => { 
+        const tempProperty = [];
+        if ((maxBudget !== -1 || rooms !== "" || coed !== "" || leaseType !== "") && maxBudget !== "") {
+            storedListing.map((post) => {
+                if (post.data.pricePerMonth <= maxBudget || post.data.bedrooms === rooms || post.data.genderSpecification === coed || post.data.leaseType === leaseType){
+                    tempProperty.push(post);
+                }
+            });
+            setProperty(tempProperty);        
+        } 
+        else {
+            resetListing();
+        }
+    }
+    
+    const resetListing = () => {
+        setProperty(storedListing); 
+        document.getElementById("maxPriceField").value = "";
+        setRooms("");
+        setCoed("");
+        setLeaseType("");
+    }
     
     return (
         <div className="buyer">
@@ -68,15 +99,18 @@ function Buyer() {
                 <div className="filter_container">
 
                     <input
+                        id = "maxPriceField"
                         type="number"
                         className="filter__inputField"
                         placeholder="Max Budget"
                         min="100"
                         max="10000"
+                        onChange={e => setMaxBudget(e.target.value)}
                     /> 
 
                     <div className="filter__inputField">
                         <Dropdown 
+                            id = "roomsDropDown"
                             options={room__option}
                             placeholder="# Rooms"
                             value = {rooms}
@@ -86,6 +120,7 @@ function Buyer() {
 
                     <div className="filter__inputField">
                         <Dropdown 
+                            id = "coedDropDown"
                             options={coed__option}
                             placeholder="Select Coed"
                             value = {coed}
@@ -95,25 +130,29 @@ function Buyer() {
                     
                     <div className="filter__inputField">
                         <Dropdown 
+                            id = "leaseTypeDropDown"
                             options={leaseType__option}
                             placeholder="Lease Type"
                             value = {leaseType}
                             onChange={leaseTypeChange}
-                            
                         />
                     </div>
 
                     <Button
                         variant="contained"
                         type="primary"
-                        className = "filter__button">
+                        className = "filter__button"
+                        onClick  = {searchListing}
+                    >
                         Search Listing
                     </Button>
 
                     <Button
                         variant="contained"
                         type="primary"
-                        className = "filter__button">
+                        className = "filter__button"
+                        onClick = {resetListing}    
+                    >
                         Reset Listing
                     </Button>
                     
