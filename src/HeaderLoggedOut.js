@@ -24,12 +24,14 @@ function HeaderLoggedOut({dark}) {
                 console.log(e);
             }
         } else if (value === "browse listings"){
+            history.push("/browse-listing");
             try{
                 checkbox.checked=false;
             } catch(e){
                 console.log(e);
             }
         } else if (value === "post new listing"){
+            history.push("/new-listing");
             try{
                 checkbox.checked=false;
             } catch(e){

@@ -15,6 +15,7 @@ import MyPosting from './MyPosting';
 import PostView from './PostView';
 import MyFavorites from './MyFavorites';
 import Buyer from './Buyer';
+import Maps from './Maps';
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
@@ -41,6 +42,10 @@ function App() {
         <Switch>
           <Route path="/register">
             <Register />
+          </Route>
+          
+          <Route path="/maps">
+            <Maps />
           </Route>
 
           <Route path="/login">
@@ -113,12 +118,14 @@ function App() {
             </Route>
           ) : (
             <Route path="/messages">
-              <div className="newListing__background">
+              
                 <Header dark />
                 <SidebarWindow />
-              </div>
+            
             </Route>
           )}
+
+
 
           {!user ? (
             <Route path="/new-listing">
@@ -126,10 +133,8 @@ function App() {
             </Route>
           ) : (
             <Route path="/new-listing">
-              <div className="newListing__background">
-                <Header dark />
-                <Seller />
-              </div>
+              <Header dark />
+              <Seller />
             </Route>
           )}
 

@@ -150,7 +150,8 @@ function Seller() {
 
   const getLat_lng = (address) => {
     // Getting lat and lng based on the address
-    Geocode.fromAddress(address).then(
+    var place = address + ", " + city;
+    Geocode.fromAddress(place).then(
         (response) => {
         //   const { lat, lng } = response.results[0].geometry.location;
         //   setLatitude(response.results[0].geometry.location.lat);

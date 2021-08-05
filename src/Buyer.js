@@ -13,12 +13,12 @@ function Buyer() {
     const [leaseType, setLeaseType] = useState('');
     const [property, setProperty] = useState([]);
     const [noListings, setNoListings] = useState(false);
-    const [maxBudget, setMaxBudget] = useState(-1);
+    const [maxBudget, setMaxBudget] = useState("");
     const [storedListing, setStoredListing] = useState([]);
     const [storedListingStatus, setStoredListingStatus] = useState(false);
 
     const room__option = [
-        '1','2','3','4','5'
+        '1','2','3','4','5', '6+'
     ];
 
     const coed__option = [
@@ -71,13 +71,20 @@ function Buyer() {
 
     const searchListing = (e) => { 
         const tempProperty = [];
-        console.log(maxBudget);
         if (maxBudget !== "" || rooms !== "" || coed !== "" || leaseType !== "") {
-            storedListing.map((post) => {
-                if (post.data.pricePerMonth <= maxBudget || post.data.bedrooms === rooms || post.data.genderSpecification === coed || post.data.leaseType === leaseType){
-                    tempProperty.push(post);
-                }
-            });
+            if (rooms === "6+") {
+                storedListing.map((post) => {
+                    if (parseInt(post.data.pricePerMonth) <= parseInt(maxBudget) || parseInt(post.data.bedrooms) >= parseInt(rooms) || post.data.genderSpecification === coed || post.data.leaseType === leaseType){
+                        tempProperty.push(post);
+                    }
+                });
+            } else {
+                storedListing.map((post) => {
+                    if (parseInt(post.data.pricePerMonth) <= parseInt(maxBudget)  || post.data.bedrooms === rooms || post.data.genderSpecification === coed || post.data.leaseType === leaseType){
+                        tempProperty.push(post);
+                    }
+                });
+            }
             setProperty(tempProperty);        
         } 
         else {
@@ -175,7 +182,7 @@ function Buyer() {
                         </div>
                     )}
                     <div className="map__container">
-                        <Maps />
+                        <Maps property = {property}/>
                     </div>
                 </div>
             </div>

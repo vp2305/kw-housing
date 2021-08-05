@@ -131,7 +131,6 @@ function PostView() {
     }
 
     const getAllSellerFriends = async () => {
-        
         if (user){
             db
             .collection("users")
@@ -140,7 +139,6 @@ function PostView() {
             .onSnapshot((snapshot) => {
                 setSellerFriends(snapshot.docs.map((doc) => doc.data()));
             });
-
         } else {
             alert("You need to sign-in before connecting with the seller!");
         }
@@ -170,11 +168,13 @@ function PostView() {
 
     useEffect(() => {
         console.log(alreadyFriend);
-        if (alreadyFriend != null){
-            if (alreadyFriend){
-                alert("You guys are already friends!");
-            } else if (alreadyFriend === false) {
-                newFriend();
+        if (user) {
+            if (alreadyFriend != null){
+                if (alreadyFriend){
+                    alert("You guys are already friends!");
+                } else if (alreadyFriend === false) {
+                    newFriend();
+                }
             }
         }
     },[alreadyFriend])
@@ -236,8 +236,6 @@ function PostView() {
             alert("Please write a message before submitting!");
         }
     }
-
-    
 
     return (
         <div className="postView">

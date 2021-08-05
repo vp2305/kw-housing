@@ -1,7 +1,6 @@
 .browsePost__Container {
   width: 95%;
   height: 40%;
-
   border-radius: 10px;
   margin: 10px auto;
   display: flex;
@@ -13,7 +12,7 @@
   image-resolution: smooth;
   object-fit: contain;
   width: 100%;
-  max-height: 260px;
+  height: 100%;
 }
 
 .browsePost__leftContainer {
@@ -25,7 +24,8 @@
 
 .imageContainer {
   width: 100%;
-  height: 100%;
+  height: 250px;
+  margin-top: 2em;
 }
 
 .browsePost_media__preview {
@@ -40,7 +40,7 @@
 
 .browsePost__rightContainer {
   margin: 0px 20px;
-  margin-top: 30px;
+  margin-top: 5vh;
   cursor: pointer;
 }
 
@@ -59,7 +59,7 @@
 
 .bedroom__span > h4,
 .washroom__span > h4 {
-  margin: 24px 5px;
+  margin: 20px 5px;
 }
 
 .washroom__span {
