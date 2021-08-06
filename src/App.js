@@ -125,8 +125,6 @@ function App() {
             </Route>
           )}
 
-
-
           {!user ? (
             <Route path="/new-listing">
               <Login />

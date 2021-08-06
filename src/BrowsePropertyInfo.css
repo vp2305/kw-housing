@@ -1,6 +1,5 @@
 .browsePost__Container {
   width: 95%;
-  height: 40%;
   border-radius: 10px;
   margin: 10px auto;
   display: flex;
@@ -13,6 +12,7 @@
   object-fit: contain;
   width: 100%;
   height: 100%;
+  max-height: 250px;
 }
 
 .browsePost__leftContainer {
@@ -40,32 +40,25 @@
 
 .browsePost__rightContainer {
   margin: 0px 20px;
-  margin-top: 5vh;
+  padding: 10px;
   cursor: pointer;
-}
-
-.browsePost__bedroom__washroom {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.bedroom__span,
-.washroom__span {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.bedroom__span > h4,
-.washroom__span > h4 {
-  margin: 20px 5px;
-}
-
-.washroom__span {
-  margin: 0px 3rem;
 }
 
 .browsePost__rightContainer > h2 {
   margin-bottom: 10px;
+}
+
+.span__titleBrowse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.span__title2Browse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 12px;
+  position: relative;
 }

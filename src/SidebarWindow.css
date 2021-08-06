@@ -71,7 +71,8 @@
   border: none;
   margin-left: 10px;
   flex: 0.95;
-  height: 20px;
+  height: 30px;
+  width: 100%;
 }
 
 .sidebarWindow__searchContainter > .MuiSvgIcon-root {

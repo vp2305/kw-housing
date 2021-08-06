@@ -85,6 +85,7 @@ function Header({ dark }) {
             height="80"
             width="80"
             alt=""
+            className = "logo"
           ></img>
         </div>
         <input className="menu-btn" type="checkbox" id="menu-btn" />
@@ -139,6 +140,7 @@ function Header({ dark }) {
             height="80"
             width="80"
             alt=""
+            className = "logo"
           ></img>
         </div>
         <input className="menu-btn" type="checkbox" id="menu-btn" />

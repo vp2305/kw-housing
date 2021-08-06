@@ -1,0 +1,101 @@
+.infoProperty {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex__InfoLeft {
+  flex: 0.5;
+  width: 100%;
+  height: 100%;
+}
+
+.flex__InfoRight {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.infoPropertyMedia__container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.infoProperty_imageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.infoProperty__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  max-height: 300px;
+}
+
+.browsePost__featureView,
+.browsePost__featureView2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2.5rem;
+}
+
+.browsePost__featureView {
+  margin-top: 10px;
+}
+.browsePost__featureView2 {
+  margin-bottom: 10px;
+}
+
+.span__info > h4,
+.span__info > h4 {
+  margin: 0px 5px !important;
+}
+
+.washroom__span {
+  margin: 0px 3rem;
+}
+
+.span__info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.span__title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+  position: relative;
+}
+
+#span__ans {
+  color: rgb(105, 105, 105) !important;
+}
+
+.span__title2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 25px;
+  position: relative;
+}

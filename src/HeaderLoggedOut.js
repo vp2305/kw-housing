@@ -69,7 +69,7 @@ function HeaderLoggedOut({dark}) {
             <Headroom>
                 <header className = {header ? 'header active' : 'header'}>
                     <div className = "header__logoContainer">
-                        <img src= "/Images/Header/logowblackground.png" height="80" width="80" alt=""></img>
+                        <img src= "/Images/Header/logowblackground.png" height="80" width="80" alt="" className = "logo"></img>
                     </div>
                     <input className="menu-btn" type="checkbox" id="menu-btn" />
                     <label
@@ -101,7 +101,7 @@ function HeaderLoggedOut({dark}) {
             <Headroom>
                 <header className = {header ? 'header active' : 'header'}>
                     <div className = "header__logoContainer">
-                        <img src= "/Images/Header/logowblackground.png" height="80" width="80" alt=""></img>
+                        <img src= "/Images/Header/logowblackground.png" height="80" width="80" alt="" className = "logo"></img>
                     </div>
                     <input className="menu-btn" type="checkbox" id="menu-btn" />
                     <label

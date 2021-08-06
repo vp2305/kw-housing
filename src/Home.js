@@ -1,8 +1,11 @@
 import React from "react";
 import "./Home.css";
 import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 function Home() {
+    const history = useHistory();
+    
     return (
         <div className="Home">
             <div className="bot__container">
@@ -11,10 +14,10 @@ function Home() {
                     <div className="home__subtitle">
                     <h1>Housing Marketplace for Kitchener Waterloo Region</h1>
                     <div className="buttonContainer">
-                            <Button variant="contained" type="primary">
+                            <Button variant="contained" type="primary" onClick={() => history.push("/browse-listing")}>
                                 Browse Listing
                             </Button>
-                            <Button variant="contained" type="primary">
+                            <Button variant="contained" type="primary" onClick={() => history.push("/new-listing")}>
                                 Post Listing
                             </Button>
                         </div>

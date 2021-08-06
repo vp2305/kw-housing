@@ -5,7 +5,7 @@ import Maps from './Maps';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import db from './firebase';
-import BrowseListingInfo from './BrowseListingInfo';
+import BrowsePropertyInfo from './BrowsePropertyInfo.js';
 
 function Buyer() {
     const [rooms, setRooms] = useState('');
@@ -170,7 +170,7 @@ function Buyer() {
                     {!noListings ?(
                         <div className="property__container">
                             {property.map((post) => (
-                                <BrowseListingInfo 
+                                <BrowsePropertyInfo 
                                     property = {post}
                                     id = {post.id}
                                 />
