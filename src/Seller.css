@@ -123,12 +123,14 @@ hr {
   padding: 0px 10px;
   border: 0px solid rgb(168, 168, 168);
   margin-top: 10px;
+  transition: all 0.2s ease-out;
 }
 
 .seller__inputField:focus,
 .seller__inputFieldFlex:focus,
 .description:focus {
   outline: none;
+  transition: all 0.2s ease-out;
 }
 
 .flex__form {
@@ -145,6 +147,7 @@ hr {
   padding: 0px 10px;
   border: 0px solid gray;
   margin-top: 10px;
+  transition: all 0.2s ease-out;
 }
 
 .inputFieldFlex__DropDown {
@@ -154,6 +157,7 @@ hr {
   padding: 0px 10px;
   border: 0px solid gray;
   margin-top: 10px;
+  transition: all 0.2s ease-out;
 }
 
 .dropDown > .Dropdown-control {
@@ -161,6 +165,11 @@ hr {
   margin-top: 14px !important;
   margin-left: -10px;
   padding-top: 10px !important;
+  transition: all 0.2s ease-out;
+}
+
+.dropDown > .Dropdown-root {
+  transition: all 0.2s ease-out;
 }
 
 .inputFieldFlex__Coed {
@@ -169,6 +178,7 @@ hr {
   border-radius: 5px;
   padding: 0px 10px;
   border: 0px solid gray;
+  transition: all 0.2s ease-out;
 }
 
 #sellerFormInfoFlex {
@@ -344,4 +354,5 @@ input[type="file"] {
 
 input:disabled {
   background-color: rgb(136, 136, 136);
+  transition: all 0.2s ease-out;
 }

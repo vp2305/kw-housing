@@ -14,7 +14,6 @@ import { compose, withProps } from "recompose"
 // https://www.aspsnippets.com/Articles/Google-Maps-V3-Delete-Remove-Clear-all-markers.aspx
 
 
-
 function Maps({property}) {
     const [selectedAddress, setSelectedAddress] = useState(null);
 

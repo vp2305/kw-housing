@@ -59,7 +59,6 @@
   font-weight: 500;
   font-size: 16px;
   transition: all 0.2s ease-out;
-  margin-top: 20px;
 }
 
 .header li a:hover {
@@ -185,7 +184,7 @@
   }
 
   .header .menu-icon {
-    margin-top: 15px;
+    margin-top: 20px;
   }
 
   .header li a {

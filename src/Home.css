@@ -58,3 +58,138 @@
   font-size: 16px;
   color: #dfdfdf;
 }
+
+.features__container {
+  width: 100%;
+
+  margin-top: 6rem;
+  padding: 20px;
+}
+
+.features {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 4rem auto;
+}
+
+.features__wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.features__wrapper > img {
+  object-fit: contain;
+  image-resolution: smooth;
+  width: 85px;
+  display: block;
+  margin: 5px auto;
+}
+
+.features__wrapper > h2 {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.features__wrapper > p {
+  width: 80%;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.contact-us__container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contact-us__wrapper {
+  display: block;
+  width: 75%;
+  height: 100%;
+  background-color: white;
+  padding: 40px 30px;
+  margin: 30px auto;
+  box-shadow: 0 0 25px 0 rgb(0 0 0 / 17%);
+  border-radius: 10px;
+  justify-content: center;
+  transition: all 0.6s ease;
+}
+
+.contact-us {
+  width: 80%;
+  margin: auto;
+}
+
+.contact-us > h1 {
+  margin-bottom: 30px;
+}
+
+.contact-us > p {
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 25px;
+  color: rgb(61, 61, 61);
+}
+
+.contact-us > Button {
+  display: block;
+  text-transform: inherit !important;
+  background-color: #ffa600 !important;
+  margin-top: 25px;
+  width: 130px;
+  font-size: 16px;
+}
+
+#line-break {
+  border: none;
+  border-radius: 20px;
+  margin-top: 5px;
+  width: 40px;
+  height: 5px;
+  background-color: #f8a724;
+}
+
+#row_one {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin: 0 15px;
+  margin-top: 30px;
+}
+
+#row_one_input2,
+#second_row_second {
+  margin: 0 50px;
+}
+
+#row_one > input {
+  height: 50px !important;
+  padding-left: 10px;
+  font-size: 17px !important;
+  width: 40%;
+  border: 1px solid #ced4da;
+  color: #495057;
+}
+
+#row_one3 {
+  display: flex;
+  width: 85%;
+  margin: 0 15px;
+  margin-top: 30px;
+}
+
+#row_one3 > textarea {
+  height: 160px !important;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 17px !important;
+  width: 100%;
+  border: 1px solid #ced4da;
+  color: #495057;
+}
