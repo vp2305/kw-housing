@@ -1,18 +1,16 @@
-
 import "./HeaderLoggedOut.css";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import Headroom from "react-headroom";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
+function HeaderLoggedOut({ dark }) {
+  const [header, setHeader] = useState(false);
+  const history = useHistory();
+  var checkbox = document.getElementById("menu-btn");
 
-function HeaderLoggedOut({dark}) {
-    const [header, setHeader] = useState(false);
-    const history = useHistory();
-    var checkbox = document.getElementById("menu-btn")
-
-    useEffect(()=>{
-        console.log("dark" + dark);
-    },[])
+  useEffect(() => {
+    console.log("dark" + dark);
+  }, []);
 
     const handleDifferentPages = (e) => {
         var value = e.target.id;
@@ -53,16 +51,17 @@ function HeaderLoggedOut({dark}) {
             }
         }
     }
+  };
 
-    const backgroundChange = () => {
-        if (window.scrollY >= 80){
-            setHeader(true);
-        } else {
-            setHeader(false);
-        }
+  const backgroundChange = () => {
+    if (window.scrollY >= 80) {
+      setHeader(true);
+    } else {
+      setHeader(false);
     }
+  };
 
-    window.addEventListener("scroll", backgroundChange);
+  window.addEventListener("scroll", backgroundChange);
 
     return ( 
         !dark ?(
