@@ -51,7 +51,6 @@ function HeaderLoggedOut({ dark }) {
             }
         }
     }
-  };
 
   const backgroundChange = () => {
     if (window.scrollY >= 80) {
