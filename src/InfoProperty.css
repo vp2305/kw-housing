@@ -1,7 +1,6 @@
 .infoProperty {
   width: 100%;
   height: 100%;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,22 +31,19 @@
   width: 100%;
   height: 100%;
   display: flex;
-
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
 .infoProperty__image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 500px;
+  object-fit: unset;
   justify-content: center;
   align-items: center;
-  margin: auto;
-  border-radius: 10px;
-  object-fit: contain;
   max-height: 300px;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .browsePost__featureView,
@@ -86,6 +82,7 @@
   align-items: center;
   width: 200px;
   position: relative;
+  transition: all 0.2s ease-out;
 }
 
 #span__ans {
@@ -98,4 +95,68 @@
   align-items: center;
   margin-left: 25px;
   position: relative;
+}
+
+@media only screen and (max-width: 1220px) {
+  .span__title {
+    width: 150px;
+  }
+  .infoProperty__image {
+    width: 400px;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .infoProperty__image {
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .browsePost__featureView,
+  .browsePost__featureView2 {
+    position: relative;
+  }
+  .infoProperty {
+    flex-direction: column;
+  }
+  .flex__InfoRight {
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 545px) {
+  .browsePost__featureView,
+  .browsePost__featureView2 {
+    flex-direction: column;
+    height: auto;
+  }
+  .infoProperty {
+    flex-direction: column;
+  }
+  .span__title,
+  .span__title2 {
+    width: 100%;
+  }
+  .span__title2 {
+    margin: 10px 0px;
+  }
+  .flex__InfoRight {
+    width: 100%;
+  }
+  .post__container {
+    margin-bottom: 0px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .button__container > Button {
+    margin: 0px 15px;
+  }
+}
+
+@media only screen and (max-width: 357px) {
+  .button__container > Button {
+    margin-top: 10px;
+  }
 }

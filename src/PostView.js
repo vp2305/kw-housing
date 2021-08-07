@@ -240,23 +240,22 @@ function PostView() {
     return (
         <div className="postView">
             <div className="postView__wrapper">
+                <h1>{property.listingTitle} ·
+                    <span onClick = {favStatus}>
+                        {fav ?(
+                            <IconButton>
+                                <MdFavorite id = "filled__favIcon"/>
+                            </IconButton>
+                        ):(
+                            <IconButton>
+                                <GrFavorite id = "unFilled__favIcon"/>
+                            </IconButton>
+                        )}
+                    </span> 
+                </h1>
+                <p>${property.pricePerMonth} / Month · {property.address} · Bedrooms: {property.bedrooms} · Bathrooms: {property.bathrooms}</p>
                 <div className="postView__flex">
                     <div className="postView__flexLeft">
-                        <h1>{property.listingTitle} ·
-                            <span onClick = {favStatus}>
-                                {fav ?(
-                                    <IconButton>
-                                        <MdFavorite id = "filled__favIcon"/>
-                                    </IconButton>
-                                ):(
-                                    <IconButton>
-                                        <GrFavorite id = "unFilled__favIcon"/>
-                                    </IconButton>
-                                )}
-                            </span> 
-                        </h1>
-                        <p>${property.pricePerMonth} / Month · {property.address} · Bedrooms: {property.bedrooms} · Bathrooms: {property.bathrooms}</p>
-                        
                         <div className="postView__card">
                             <h2>Available Features</h2>
                             <div className="postView__featuresContainer">

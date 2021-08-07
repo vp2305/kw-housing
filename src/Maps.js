@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, withGoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps";
-import { compose, withProps } from "recompose"
+import { compose, withProps } from "recompose";
 
 // https://www.npmjs.com/package/react-geocode
 // https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingResults
@@ -8,18 +8,15 @@ import { compose, withProps } from "recompose"
 // https://github.com/leighhalliday/google-maps-react-demo/blob/master/src/App.js
 // https://www.youtube.com/watch?v=Pf7g32CwX_s&ab_channel=LeighHalliday
 
-
 // https://tomchentw.github.io/react-google-maps/
 // https://developers.google.com/maps/documentation/javascript/examples/marker-remove#maps_marker_remove-javascript
 // https://www.aspsnippets.com/Articles/Google-Maps-V3-Delete-Remove-Clear-all-markers.aspx
-
-
 function Maps({property}) {
     const [selectedAddress, setSelectedAddress] = useState(null);
 
     const MyMapComponent = compose(withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBGEtMHMNxUVGLVwM73LvOd123hKzinfNQ`,
-        loadingElement:<div style={{ height: `100%` }} />,
+        loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `100%` }} />,
         mapElement: <div style={{ height: `100%` }} />,
     }),

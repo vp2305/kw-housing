@@ -461,7 +461,7 @@ function Seller() {
                     </label>
                   </span>
                 </div>
-                <div className="feature__column">
+                <div className="feature__column" id = "feature__3Column">
                   <span>
                     <input type="checkbox" name="TV" onChange={checkedBox} />
                     <label for="TV">TV</label>

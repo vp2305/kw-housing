@@ -26,6 +26,7 @@
   padding: 0px 10px;
   border: 0px solid gray;
   flex: 1;
+  transition: all 0.3s ease-in-out !important;
 }
 
 .filter__dropDown {
@@ -36,6 +37,7 @@
   border: 0px solid gray;
   margin-top: 10px;
   flex: 1;
+  transition: all 0.3s ease-in-out !important;
 }
 
 .Dropdown-control {
@@ -47,13 +49,14 @@
   padding-top: 15px !important;
   border-radius: 5px !important;
   border: 0px solid gray !important;
+  transition: all 0.3s ease-in-out !important;
 }
 .Dropdown-arrow {
   top: 20px !important;
 }
 
 .Dropdown-placeholder {
-  color: #4b4b4b;
+  color: #505050;
 }
 
 .filter__button {
@@ -65,6 +68,7 @@
   font-size: 16px !important;
   color: white !important;
   margin: auto 5px !important;
+  transition: all 0.3s ease-in-out !important;
 }
 
 #filter__divider {
@@ -79,6 +83,7 @@
   height: 81vh;
   display: flex;
   flex-direction: row;
+  transition: all 0.3s ease-in-out !important;
 }
 
 .property__container {
@@ -87,6 +92,7 @@
   width: 100%;
   height: 80vh;
   overflow: auto;
+  transition: all 0.3s ease-in-out !important;
 }
 
 .map__container {
@@ -94,6 +100,7 @@
   flex-direction: column;
   width: 100%;
   height: 80vh;
+  transition: all 0.3s ease-in-out !important;
 }
 
 .property__container > h2 {
@@ -108,4 +115,25 @@
   border-radius: 10px;
   margin-bottom: 1.5rem;
   padding: 10px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .filter__button {
+    width: 100px;
+    transition: all 0.3s ease-in-out !important;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .map__container {
+    display: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .property_map_container {
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+  }
+  .property__container {
+    flex: 1;
+  }
 }

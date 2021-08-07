@@ -64,7 +64,6 @@ function SidebarWindow() {
                         <SearchOutlined />
                         <input placeholder="Search or start new chat" type="text" />
                     </div>
-
                     <div className = "sidebarWindow__chats">
                         {friends.map(room => (
                             <SidebarInfo 

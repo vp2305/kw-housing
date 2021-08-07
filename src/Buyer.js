@@ -6,6 +6,7 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import db from './firebase';
 import BrowsePropertyInfo from './BrowsePropertyInfo.js';
+import { FaWindows } from 'react-icons/fa';
 
 function Buyer() {
     const [rooms, setRooms] = useState('');
@@ -16,6 +17,8 @@ function Buyer() {
     const [maxBudget, setMaxBudget] = useState("");
     const [storedListing, setStoredListing] = useState([]);
     const [storedListingStatus, setStoredListingStatus] = useState(false);
+
+    const [mapStatus, setMapsStatus] = useState(false);
 
     const room__option = [
         '1','2','3','4','5', '6+'

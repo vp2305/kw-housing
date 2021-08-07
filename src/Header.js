@@ -133,7 +133,7 @@ function Header({ dark }) {
     </Headroom>
   ) : (
     <Headroom>
-      <header className={header ? "header active" : "header"}>
+      <header className={header ? "header active" : "header_background"}>
         <div className="header__logoContainer">
           <img
             src="/Images/Header/bgwhite.png"

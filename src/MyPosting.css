@@ -5,7 +5,7 @@
 }
 
 .myPosting__wrapper {
-  padding-top: 6rem;
+  padding-top: 8rem;
 }
 
 .myPosting__wrapper > h2 {
@@ -30,7 +30,7 @@
 
 .post__container {
   width: 100%;
-  height: 350px;
+
   border-radius: 10px;
   margin-bottom: 1.5rem;
   padding: 10px;
