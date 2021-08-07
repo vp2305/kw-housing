@@ -16,6 +16,10 @@ import PostView from './PostView';
 import MyFavorites from './MyFavorites';
 import Buyer from './Buyer';
 import Maps from './Maps';
+
+
+// Make Register, Sign in, browse listing filter, and messages tab responsive.
+
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {
