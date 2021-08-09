@@ -80,16 +80,16 @@ function HeaderLoggedOut({ dark }) {
                         <li>
                             <a onClick={handleDifferentPages} id="home">Home</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="browse listings" >Browse Listings</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="post new listing" >Post New Listing</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="sign in">Sign In</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="register">Register</a>
                         </li>
                     </ul>
@@ -112,16 +112,16 @@ function HeaderLoggedOut({ dark }) {
                         <li>
                             <a onClick={handleDifferentPages} id="home" >Home</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="browse listings" >Browse Listings</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="post new listing" >Post New Listing</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="sign in">Sign In</a>
                         </li>
-                        <li >
+                        <li>
                             <a onClick={handleDifferentPages} id="register">Register</a>
                         </li>
                     </ul>
