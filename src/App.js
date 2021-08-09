@@ -104,7 +104,7 @@ function App() {
             <Route path="/my-postings">
               <Header dark/>
               <MyPosting />
-              <Footer />
+
             </Route>
           )}
           

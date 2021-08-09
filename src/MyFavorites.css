@@ -1,0 +1,16 @@
+.picture__wrapper03 {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: 2vh;
+  }
+  .picture__wrapper03 > img {
+    height: 450px;
+    width: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    image-resolution: smooth;
+    object-fit: contain;
+    padding-top: 0px;
+    background-color: rgb(255, 255, 255);
+  }
