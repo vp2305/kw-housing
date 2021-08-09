@@ -60,16 +60,15 @@ h2 {
 }
 .seller__wrapper {
   width: 100%;
-  padding-top: 20rem;
+  padding-top: 27rem;
 }
 
-.seller__wrapper > h2 {
+.seller > h2 {
   display: block;
   width: fit-content;
   margin: auto;
   /*font-weight: 400;*/
-  padding-top: 32px;
-  margin-top: 100px;
+  margin-top: 50px;
 
   /*
   border: 1px solid #000;

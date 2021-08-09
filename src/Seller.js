@@ -251,11 +251,11 @@ function Seller() {
 
   return (
     <div className="seller">
+      <h2 className="title">Post Your Ad</h2>
       <div className="picture__wrapper">
         <img src="/Images/Seller/postadpic.gif" alt = "" />
       </div>
       <div className="seller__wrapper">
-        <h2 className="title">Post Your Ad</h2>
         <form className="newPostingForm">
           <div className="media">
             <p className="subheading">Photos</p>
