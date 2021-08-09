@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
-
+import { spreadElement } from "@babel/types";
 
 function Home() {
     const history = useHistory();
@@ -68,18 +68,18 @@ function Home() {
                 <div className="features">
                     <div className = "features__wrapper">
                         <h2>SEARCH</h2>
-                        <img src="https://img.icons8.com/color/120/4a90e2/search--v2.png"/>
-                        <p>Search with ease, by price, start term, location and more!</p>
+                        <img src="https://img.icons8.com/material-outlined/120/ff7700/search-property.png"/>
+                        <p>Search with ease according to the: price, start term, location and more!</p>
                     </div>
                     <div className = "features__wrapper">
                         <h2>POST</h2>
-                        <img src="https://img.icons8.com/material-outlined/120/4a90e2/edit-file--v1.png"/>
-                        <p>Post your listing with our intuitive template in a matter of seconds!</p>
+                        <img src="https://img.icons8.com/material-outlined/120/ff7700/add-property.png"/>
+                        <p>Post your listing with our existing template in a matter of seconds!</p>
                     </div>
                     <div className = "features__wrapper">
                         <h2>CONNECT</h2>
-                        <img src="https://img.icons8.com/ios/120/4a90e2/connectdevelop.png"/>
-                        <p>Connect with the sellers with a simple click!</p>
+                        <img src="https://img.icons8.com/ios/120/ff7700/people-working-together.png"/>
+                        <p>Connect with sellers through a simple click!</p>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ function Home() {
                     <div className = "contact-us">
                         <h1 >Feel free to reach out to us!</h1>
                         <hr id = "line-break"/>
-                        <p>Feel like contacting us? Submit your question here and we will get back to you as soon as possible.</p>
+                        <p>Have a question for us? Fill out our contact form and we will get back to you as soon as possible!</p>
                         <form id = "row_one">
                             <input type="text" placeholder="Name" id= "row_one_input1" onChange={e=>setName(e.target.value)}/>
                             <input type="text" placeholder="Email"  id = "row_one_input2" onChange={e=>setEmail(e.target.value)}/>
