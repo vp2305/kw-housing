@@ -21,7 +21,7 @@ function Buyer() {
     const [mapStatus, setMapsStatus] = useState(false);
 
     const room__option = [
-        '1','2','3','4','5', '6+'
+        '0','1','2','3','4','5', '6+'
     ];
 
     const coed__option = [

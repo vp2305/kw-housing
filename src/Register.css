@@ -214,4 +214,15 @@
   .Register > img {
     margin-left: -40px;
   }
+
+  .inputFieldFlex {
+    display: block;
+    width: 95.6%;
+    margin-right: 15px;
+  }
+
+  .inputField,
+  .password {
+    width: 100% !important;
+  }
 }

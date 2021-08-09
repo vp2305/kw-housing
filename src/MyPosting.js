@@ -79,7 +79,6 @@ function MyPosting() {
                         ))}
                     </div>
                 </div>
-                <Footer />
             </div>
         )
     )

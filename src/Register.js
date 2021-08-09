@@ -99,14 +99,14 @@ function Register() {
     return (
         <div className="Register">
             <img 
-                src= "Images/Header/bgwhite.png"
+                src= "Images/Header/bgblack.png"
                 alt = ""
                 onClick={handleDifferentPages}
                 className = "registerLogo"
                 />
             <div className="register__Container">
                 <div className="register__leftContainer">  
-                    <img src= "/Images/Register/registerpic.gif" alt = "" />
+                    <img src= "/Images/Register/Scrolling on iPhone.gif" alt = "" />
                 </div>
                 <div className="register__rightContainer">
                     <div className="register__formContainer">

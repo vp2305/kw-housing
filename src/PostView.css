@@ -27,7 +27,7 @@
 .postView-image {
   display: relative;
   width: 100%;
-  max-height: 800px;
+  max-height: 700px;
   border-radius: 10px;
   image-resolution: smooth;
   object-fit: contain;
@@ -139,6 +139,10 @@
   color: white !important;
   text-transform: none !important;
   margin-top: 0.5rem !important;
+}
+
+.sendButton:disabled {
+  background-color: rgb(143, 143, 143) !important;
 }
 
 .postView__additionalDetails {

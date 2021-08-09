@@ -140,13 +140,43 @@ function Seller() {
     }
   };
 
-  const postListing = (event) => {
+  const postListing = async (event) => {
     event.preventDefault();
-    alert("Your posting will be available in few minutes!");
-    setButtonState(true);
-    history.push("/browse-listing");
-    getLat_lng(address);
+    const requireStatus = await handleRequirements();
+
+    if (requireStatus === true) {
+      alert("Your posting will be available in few minutes!");
+      setButtonState(true);
+      history.push("/browse-listing");
+      getLat_lng(address);
+    } else{
+      alert("Make sure to fill in all the required information before submitting!")
+    }
   };
+
+  const handleRequirements = async () => {
+    if (
+        finalImageState.length < 2 
+        || features.length < 8 
+        || document.getElementById("listingTitleInput").value == ""
+        || document.getElementById("addressInput").value == ""
+        || document.getElementById("cityInput").value == "" 
+        || document.getElementById("zipCodeInput").value == ""
+        || document.getElementById("bedroomInput").value == ""
+        || document.getElementById("bathroomInput").value == ""
+        || buildingType == ""
+        || document.getElementById("descriptionInput").value == ""
+        || document.getElementById("fromDateInput").value == ""
+        || leaseType == ""
+        || genderSpecification == ""
+        || document.getElementById("priceInput").value == ""
+        || document.getElementById("utilityInput").value == ""
+        ){
+        return false;
+    } else {
+      return true;
+    }
+  }
 
   const getLat_lng = (address) => {
     // Getting lat and lng based on the address
@@ -258,7 +288,7 @@ function Seller() {
       <div className="seller__wrapper">
         <form className="newPostingForm">
           <div className="media">
-            <p className="subheading">Photos</p>
+            <p className="subheading">Photos (2 Minimum) <span id = "requiredIcon">*</span></p>
             <p className="text-grey">Upload pictures of your place</p>
             <div id="formInfoMedia">
               <label className="custom-file-upload">
@@ -268,6 +298,7 @@ function Seller() {
                   name="media"
                   accept="image/*"
                   multiple
+                 
                   onChange={onImageChange}
                 />
                 <p className="text-grey">Click to upload up to 10 images</p>
@@ -308,8 +339,9 @@ function Seller() {
             <p className="subheading">Listing Details</p>
             <p className="text-grey">Fill out the following section</p>
             <div id="formInfo">
-              <label>Listing Title (Max 60 Characters)</label>
+              <label>Listing Title (Max 60 Characters)<span id = "requiredIcon"> *</span></label>
               <input
+                id = "listingTitleInput"
                 type="text"
                 className="seller__inputField"
                 placeholder="Eg. Well furnished 2 bedroom apartment"
@@ -317,8 +349,9 @@ function Seller() {
               />
             </div>
             <div id="formInfo">
-              <label>Address</label>
+              <label>Address <span id = "requiredIcon">*</span></label>
               <input
+                id = "addressInput"
                 type="text"
                 className="seller__inputField"
                 placeholder="Enter the address"
@@ -327,7 +360,7 @@ function Seller() {
             </div>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
-                <label>Unit Number</label>
+                <label>Unit Number </label>
                 <input
                   type="text"
                   className="seller__inputFieldFlex"
@@ -336,8 +369,9 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>City Name</label>
+                <label>City Name <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "cityInput"
                   type="text"
                   className="seller__inputFieldFlex"
                   placeholder="Eg. Kitchener"
@@ -345,8 +379,9 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Zip Code</label>
+                <label>Zip Code <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "zipCodeInput"
                   type="text"
                   className="seller__inputFieldFlex"
                   placeholder="Eg. N2A"
@@ -357,8 +392,9 @@ function Seller() {
 
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
-                <label>Bedrooms</label>
+                <label>Bedrooms <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "bedroomInput"
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"
@@ -368,8 +404,9 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Bathrooms</label>
+                <label>Bathrooms <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "bathroomInput"
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"
@@ -379,9 +416,10 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Building Type</label>
+                <label>Building Type <span id = "requiredIcon"> *</span></label>
                 <div className="inputFieldFlex__DropDown">
                   <Dropdown 
+                    id = "buildingTypeInput"
                     className="dropDown"
                     options={buildingType_option}
                     placeholder="Select One"
@@ -392,7 +430,7 @@ function Seller() {
               </div>
             </div>
             <div id="formInfo">
-              <label id="features">Features</label>
+              <label id="features">Features (Select 8 Minimum) <span id = "requiredIcon"> *</span></label>
               <div className="feature__form">
                 <div className="feature__column">
                   <span>
@@ -522,8 +560,9 @@ function Seller() {
               </div>
             </div>
             <div id="formInfo">
-              <label>Description</label>
+              <label>Description <span id = "requiredIcon"> *</span></label>
               <textarea
+                id = "descriptionInput"
                 className="description"
                 type="text"
                 spellcheck="true"
@@ -537,18 +576,19 @@ function Seller() {
             <p className="text-grey">Fill out lease specifications</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
-                <label>From Date</label>
+                <label>From Date <span id = "requiredIcon"> *</span></label>
                 <input
                   type="date"
                   className="seller__inputFieldFlex"
-                  required
+                  id = "fromDateInput"
                   onChange={(e) => setFromDate(e.target.value)}
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Lease Type</label>
+                <label>Lease Type <span id = "requiredIcon"> *</span></label>
                 <div className="inputFieldFlex__DropDown">
                   <Dropdown 
+                    id = "leaseTypeInput"
                     className="dropDown"
                     options={leaseType__option}
                     placeholder="Select One"
@@ -573,9 +613,10 @@ function Seller() {
               </div>
             </div>
             <div id="formInfo">
-              <label>Gender Specification</label>
+              <label>Gender Specification <span id = "requiredIcon"> *</span></label>
               <div className="inputFieldFlex__Coed">
                   <Dropdown 
+                    id = "CoedOptionInput"
                     className="dropDown"
                     options={coed__option}
                     placeholder="Select One"
@@ -590,8 +631,9 @@ function Seller() {
             <p className="text-grey">All prices in CAD</p>
             <div className="flex__form">
               <div id="sellerFormInfoFlex">
-                <label>Price/Month $</label>
+                <label>Price/Month $ <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "priceInput"
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"
@@ -601,8 +643,9 @@ function Seller() {
                 />
               </div>
               <div id="sellerFormInfoFlex">
-                <label>Estimated Utility Price/Month $</label>
+                <label>Estimated Utility Price/Month $ <span id = "requiredIcon"> *</span></label>
                 <input
+                  id = "utilityInput"
                   type="number"
                   className="seller__inputFieldFlex"
                   placeholder="0"

@@ -35,15 +35,15 @@ function MyFavorites() {
         console.log(noFav);
     },[myFavorites])
 
-    function viewListing(id) {
-        console.log(id);
-        history.push('/postings-view/' + id);
-    }
+
     return ( 
         !noFav ?(
             <div className="myPosting">
+                <h2>My Favorites</h2>
+                <div className="picture__wrapper03">
+                    <img src="/Images/Seller/myfavouritespic.gif" alt = "" />
+                </div>
                 <div className = "myPosting__wrapper">
-                    <h2>My Favorites</h2>
                     <hr/>
                     <div className = "post__wrapper">
                         <p>You don't have any favorite yet...</p>
@@ -57,6 +57,7 @@ function MyFavorites() {
                 <div className="picture__wrapper03">
                     <img src="/Images/Seller/myfavouritespic.gif" alt = "" />
                 </div>
+            
                 <div className = "myPosting__wrapper">
                     <hr/>
                     <div className = "post__wrapper">

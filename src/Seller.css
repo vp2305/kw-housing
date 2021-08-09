@@ -250,6 +250,10 @@ input[type="file"] {
   margin: auto;
 }
 
+#requiredIcon {
+  color: red;
+}
+
 #formInfoMedia {
   display: flex;
   width: 97%;
@@ -315,7 +319,7 @@ input[type="file"] {
   top: 85%;
   bottom: 32px;
   font-size: 3rem;
-  color: black;
+  color: red;
 
   cursor: pointer;
   user-select: none;

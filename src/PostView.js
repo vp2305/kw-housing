@@ -19,10 +19,14 @@ function PostView() {
     const [features, setFeatures] = useState([]);
     const [message, setMessage] = useState('');
     const [{user}] = useStateValue();
-    const [alreadyFriend, setAlreadyFriend] = useState(null);
     const [sellerFriends, setSellerFriends] = useState([]);
     const [fav, setFav] = useState(false);
     const [userFav, setUserFav] = useState([]);
+    const [buttonStatus, setButtonStatus] = useState(false);
+
+    window.onload = (event) => {
+        console.log('page is fully loaded');
+    };
 
     useEffect(() => {
         userFav.map((favDoc)=>{
@@ -36,7 +40,6 @@ function PostView() {
     },[userFav])
 
     useEffect(() => {
-        
         db
         .collection("availableProperty")
         .doc( postId )
@@ -58,6 +61,7 @@ function PostView() {
             setFeatures(snapshot.data()?.features);
         })
         
+        //remember to unsubscribe from your realtime listener on unmount or you will create a memory leak
     },[postId])
 
     useEffect(() => {
@@ -72,6 +76,14 @@ function PostView() {
                 data: doc.data(),
             })));
         })
+
+        db
+        .collection("users")
+        .doc(property?.sellerUID)
+        .collection("friends")
+        .onSnapshot((snapshot) => {
+            setSellerFriends(snapshot.docs.map((doc) => doc.data()));
+        });
     },[images])
 
     const nexSlide = () => {
@@ -130,54 +142,43 @@ function PostView() {
         }
     }
 
-    const getAllSellerFriends = async () => {
+    const alreadyFriendCheck = (e) => {
+        e.preventDefault();
+        let peopleStatus = false;
+        db
+        .collection("users")
+        .doc(property?.sellerUID)
+        .collection("friends")
+        .onSnapshot((snapshot) => {
+            snapshot.docs.map((doc) => {
+                if (doc.data().otherUID === user?.uid){;
+                    peopleStatus = true; 
+                }
+                else {
+                    peopleStatus = false;
+                }
+            })
+            if (peopleStatus === true){
+                setButtonStatus(true);
+            } 
+            else {
+                newFriend();
+            }
+        });
+        console.log(buttonStatus);
+        if (buttonStatus === true){
+            alert("You have already contacted this seller before check messages!");
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if (user){
-            db
-            .collection("users")
-            .doc(property?.sellerUID)
-            .collection("friends")
-            .onSnapshot((snapshot) => {
-                setSellerFriends(snapshot.docs.map((doc) => doc.data()));
-            });
+            alreadyFriendCheck(e);
         } else {
             alert("You need to sign-in before connecting with the seller!");
-        }
+        }   
     }
-
-    const alreadyFriendCheck = async () => {
-        if (sellerFriends.length !== 0 ){
-            sellerFriends.map((f)=> {
-                if (f.otherUID === user?.uid){
-                    setAlreadyFriend(true);
-                } else {
-                    setAlreadyFriend(false);
-                }
-            });
-        } else {
-            setAlreadyFriend(false);
-        }
-    }
-
-    const userButton = async (e) => {
-        e.preventDefault();
-        // We will be going into the database and check to see if the user uid is on the sellers friends tab. If so then return true since they are already friends or else return false.
-        await getAllSellerFriends();
-        await alreadyFriendCheck();
-        console.log(sellerFriends);
-    }
-
-    useEffect(() => {
-        console.log(alreadyFriend);
-        if (user) {
-            if (alreadyFriend != null){
-                if (alreadyFriend){
-                    alert("You guys are already friends!");
-                } else if (alreadyFriend === false) {
-                    newFriend();
-                }
-            }
-        }
-    },[alreadyFriend])
 
     const newFriend = () => {
         if (message !== ""){
@@ -185,13 +186,11 @@ function PostView() {
             const otherDoc = db.collection('users').doc(property?.sellerUID).collection('friends').doc();
             const id = doc?.id;
             const otherId = otherDoc?.id;
-            
             doc.set({
                 name: property?.sellerName,
                 otherUID: property?.sellerUID,
                 otherRoomId: otherId,    
             });
-
             otherDoc.set({
                 name: user?.displayName,
                 otherUID: user?.uid,
@@ -231,7 +230,7 @@ function PostView() {
                 email: user?.email,
                 timestamps: firebase.firestore.FieldValue.serverTimestamp(),
             });
-            alert("Your message is sent!");
+            alert("Your message is sent, check message tab!");
         } else {
             alert("Please write a message before submitting!");
         }
@@ -280,7 +279,7 @@ function PostView() {
                                     id = "messageTextArea"
                                     onChange={e => setMessage(e.target.value)}
                                 />
-                                <Button variant="contained" type='primary' id = "messageButton" className = "sendButton" onClick={userButton}>Send Message</Button>
+                                <Button id = "messageButton" className = "sendButton" onClick={handleSubmit}>Send Message</Button>
                             </div>   
                         </div>
                     </div>
