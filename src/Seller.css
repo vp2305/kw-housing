@@ -60,7 +60,7 @@ h2 {
 }
 .seller__wrapper {
   width: 100%;
-  padding-top: 27rem;
+  margin-top: 450px;
 }
 
 .seller > h2 {
@@ -347,15 +347,15 @@ input:disabled {
   background-color: rgb(136, 136, 136);
   transition: all 0.2s ease-out;
 }
-.picture__wrapper{
+.picture__wrapper {
   margin-top: 0;
   margin-bottom: 0;
-  width:100%;
-  height:2vh;
+  width: 100%;
+  height: 2vh;
 }
 .picture__wrapper > img {
-  height: 60%;
-  width:100%;
+  height: 450px;
+  width: 100%;
   background-repeat: no-repeat;
   position: absolute;
   image-resolution: smooth;
@@ -363,7 +363,7 @@ input:disabled {
   padding-top: 0px;
   background-color: rgb(245, 244, 244);
 }
-.seller{
+.seller {
   margin-top: 0;
   background-color: white;
 }
