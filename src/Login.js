@@ -85,7 +85,7 @@ function Login() {
                             <div className="login__leftHeader">
                                 <img onClick={handleDifferentPages}
                                     id = "logo"
-                                    src= "Images/Header/logo-black.png"
+                                    src= "Images/Header/bgwhite.png"
                                     alt = "" />
                                 <h1>Sign In to <br/> Connect With Others!</h1>
                                 <p>If you don't have an account <br/> You can <strong id = "Register" onClick={handleDifferentPages}>Register here!</strong></p>

@@ -211,4 +211,7 @@
   #alreadyHaveAccount {
     margin-top: 15px;
   }
+  .Register > img {
+    margin-left: -40px;
+  }
 }
