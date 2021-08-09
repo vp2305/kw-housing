@@ -203,3 +203,82 @@ form > span {
   background-color: white !important;
   color: black !important;
 }
+
+@media only screen and (max-width: 1330px) {
+  .login__leftHeader > img {
+    width: 500px;
+    margin-left: -50px;
+  }
+  .login__rightContainer {
+    flex: 0.5;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .login__leftHeader > img {
+    width: 400px;
+    margin-left: -50px;
+  }
+}
+
+@media only screen and (max-width: 670px) {
+  .login__container {
+    flex-direction: column;
+    display: block;
+  }
+
+  .login__leftContainer {
+    height: auto;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .login__leftHeader {
+    margin-left: 3%;
+  }
+
+  .login__leftHeaderContainer {
+    height: auto !important;
+  }
+  .login__leftWrapper {
+    height: auto;
+  }
+
+  .login__leftHeader > img {
+    margin: 0 auto;
+  }
+
+  .login__rightContainer {
+    width: 100%;
+    height: auto;
+  }
+
+  .login__signInContainer {
+    height: auto;
+    padding: 110px;
+    border-bottom-left-radius: 0px;
+  }
+
+  .login__signInWrapper {
+    display: block;
+    height: auto;
+  }
+
+  .login__signInHeader {
+    margin-top: 15px !important;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .login__signInContainer {
+    height: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .login__signInContainer > form {
+    position: relative;
+  }
+  .login__leftHeader > img {
+    width: 90%;
+  }
+}

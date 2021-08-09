@@ -253,7 +253,6 @@ function Seller() {
     <div className="seller">
       <div className="seller__wrapper">
         <h2 className="title">Post Your Ad</h2>
-
         <form className="newPostingForm">
           <div className="media">
             <p className="subheading">Photos</p>

@@ -149,23 +149,26 @@ function Buyer() {
                         />
                     </div>
 
-                    <Button
-                        variant="contained"
-                        type="primary"
-                        className = "filter__button"
-                        onClick  = {searchListing}
-                    >
-                        Search Listing
-                    </Button>
+                    <div className="button__container">
+                        <Button
+                            variant="contained"
+                            type="primary"
+                            className = "filter__button"
+                            onClick  = {searchListing}
+                        >
+                            Search Listing
+                        </Button>
 
-                    <Button
-                        variant="contained"
-                        type="primary"
-                        className = "filter__button"
-                        onClick = {resetListing}    
-                    >
-                        Reset Listing
-                    </Button>
+                        <Button
+                            variant="contained"
+                            type="primary"
+                            className = "filter__button"
+                            onClick = {resetListing}    
+                        >
+                            Reset Listing
+                        </Button>
+                    </div>
+                    
                     
                 </div>
                 <hr id="filter__divider"/>

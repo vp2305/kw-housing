@@ -111,12 +111,8 @@ function Chat() {
                 </div>
 
                 <div className="chat__headerRight">
-                    <IconButton >
-                        <SearchOutlined />
-                    </IconButton>
-                    <IconButton >
-                        <AttachFile />
-                    </IconButton>
+                    <h1></h1>
+                    <h1></h1>
                     <IconButton>
                         <MoreVertIcon />
                     </IconButton>

@@ -116,3 +116,9 @@
   padding: 0px 20px;
   height: 100%;
 }
+
+@media only screen and (max-width: 1145px) {
+  .chat {
+    flex: 1;
+  }
+}

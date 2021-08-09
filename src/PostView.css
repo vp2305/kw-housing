@@ -236,11 +236,8 @@
 }
 
 @media only screen and (max-width: 986px) {
-  .message__card {
-    width: 253%;
-  }
   #postView__Media {
-    margin-top: 60px;
+    margin-top: 30px;
   }
 }
 

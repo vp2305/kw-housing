@@ -16,7 +16,11 @@ import PostView from './PostView';
 import MyFavorites from './MyFavorites';
 import Buyer from './Buyer';
 import Maps from './Maps';
-// Make Register, Sign in, browse listing filter, and messages tab responsive.
+import Footer from "./Footer";
+
+// Make Register responsive
+
+// Requirement still left to do on the seller page...
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -70,11 +74,13 @@ function App() {
             <Route path="/postings-view/:postId">   
                 <HeaderLoggedOut dark/>
                 <PostView />
+               
             </Route>
           ) : (
             <Route path="/postings-view/:postId">
                 <Header dark />
                 <PostView />
+                
             </Route>
           )}
 
@@ -86,6 +92,7 @@ function App() {
             <Route path="/my-favorites">
               <Header dark/>
               <MyFavorites />
+              <Footer />
             </Route>
           )}
             
@@ -97,6 +104,7 @@ function App() {
             <Route path="/my-postings">
               <Header dark/>
               <MyPosting />
+              <Footer />
             </Route>
           )}
           
@@ -117,10 +125,8 @@ function App() {
             </Route>
           ) : (
             <Route path="/messages">
-              
                 <Header dark />
                 <SidebarWindow />
-            
             </Route>
           )}
 
@@ -132,6 +138,7 @@ function App() {
             <Route path="/new-listing">
               <Header dark />
               <Seller />
+              <Footer />
             </Route>
           )}
 

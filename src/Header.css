@@ -8,6 +8,7 @@
   box-sizing: border-box;
   background-color: transparent;
   z-index: 100;
+  transition: all 0.5s ease-in-out;
 }
 
 .header_background {
@@ -26,6 +27,7 @@
 .header_background.active {
   background-color: #fffdfd;
   z-index: 100;
+  transition: all 0.5s ease-in-out;
 }
 
 .header ul,

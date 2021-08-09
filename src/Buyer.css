@@ -63,7 +63,7 @@
   display: block;
   text-transform: inherit !important;
   background-color: #3399ff !important;
-  width: 150px;
+  width: auto !important;
   height: 50px;
   font-size: 16px !important;
   color: white !important;
@@ -119,8 +119,26 @@
 
 @media only screen and (max-width: 1000px) {
   .filter__button {
-    width: 100px;
     transition: all 0.3s ease-in-out !important;
+  }
+}
+
+@media only screen and (max-width: 785px) {
+  .filter_container {
+    flex-direction: column;
+  }
+
+  .filter__inputField {
+    width: 100%;
+    margin: 10px 0px;
+  }
+  #maxPriceField {
+    width: 98%;
+    padding: 20px;
+  }
+  .filter__button {
+    width: auto !important;
+    margin-top: 5px !important;
   }
 }
 

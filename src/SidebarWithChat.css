@@ -92,3 +92,9 @@
   margin-right: auto;
   color: white;
 }
+
+@media only screen and (max-width: 1145px) {
+  .sidebar__leftSide {
+    display: none;
+  }
+}
