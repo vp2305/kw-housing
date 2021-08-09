@@ -24,7 +24,7 @@
 
 .header.active,
 .header_background.active {
-  background-color: #c7c7c7;
+  background-color: #fffdfd;
   z-index: 100;
 }
 

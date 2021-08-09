@@ -16,6 +16,7 @@ import PostView from './PostView';
 import MyFavorites from './MyFavorites';
 import Buyer from './Buyer';
 import Maps from './Maps';
+import Footer from "./Footer";
 // Make Register, Sign in, browse listing filter, and messages tab responsive.
 
 function App() {
@@ -58,7 +59,6 @@ function App() {
             <Route path="/browse-listing">   
                 <HeaderLoggedOut dark/>
                 <Buyer />
-        
             </Route>
           ) : (
             <Route path="/browse-listing">
@@ -71,13 +71,11 @@ function App() {
             <Route path="/postings-view/:postId">   
                 <HeaderLoggedOut dark/>
                 <PostView />
-        
             </Route>
           ) : (
             <Route path="/postings-view/:postId">
                 <Header dark />
                 <PostView />
-          
             </Route>
           )}
 
@@ -144,6 +142,7 @@ function App() {
                 <img src="/Images/Home/skyline.gif" alt = "" />
                 <HeaderLoggedOut/>
                 <Home />
+                <Footer />
               </div>
             </Route>
           ) : (
@@ -152,6 +151,7 @@ function App() {
                 <img src="/Images/Home/skyline.gif" alt = "" />
                 <Header />
                 <Home />
+                <Footer />
               </div>
             </Route>
           )}
