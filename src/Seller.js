@@ -198,7 +198,8 @@ function Seller() {
   const handleUpload = (lat, lng) => {
     let counter = 0;
     finalImageState.map((images)=>{
-        const uploadTask = storage.ref(`images/${images.name}`).put(images)
+        const randomInteger = Math.floor(Math.random() * 10000000000);
+        const uploadTask = storage.ref(`images/${randomInteger.toString()}`).put(images)
         uploadTask.on(
             "state_changed", 
             (snapshot) => {
@@ -213,7 +214,7 @@ function Seller() {
                 // complete function
                 storage
                 .ref("images")
-                .child(images.name)
+                .child(randomInteger.toString())
                 .getDownloadURL()
                 // ^ this will go get the download link
                 .then(url => {
