@@ -180,7 +180,7 @@ function Seller() {
 
   const getLat_lng = (address) => {
     // Getting lat and lng based on the address
-    var place = address + ", " + city;
+    var place = address + ", " + city + ", Ontario, " + zipCode;
     Geocode.fromAddress(place).then(
         (response) => {
         //   const { lat, lng } = response.results[0].geometry.location;

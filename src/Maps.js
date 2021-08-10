@@ -25,7 +25,7 @@ function Maps({property}) {
     )((props) =>
         <GoogleMap 
             defaultZoom = {17} 
-            defaultCenter = {{lat: 43.8762074, lng:-79.00339369999999}} >
+            defaultCenter = {{lat: 43.474041, lng:-80.527809}} >
             {props.sellingProperty.map(location => (
                 <Marker
                     position={{
