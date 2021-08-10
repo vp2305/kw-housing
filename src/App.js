@@ -18,10 +18,6 @@ import Buyer from './Buyer';
 import Maps from './Maps';
 import Footer from "./Footer";
 
-// Make Register responsive
-
-// Requirement still left to do on the seller page...
-
 function App() {
   const [{ user }, dispatch] = useStateValue();
   useEffect(() => {

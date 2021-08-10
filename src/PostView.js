@@ -19,14 +19,11 @@ function PostView() {
     const [features, setFeatures] = useState([]);
     const [message, setMessage] = useState('');
     const [{user}] = useStateValue();
-    const [sellerFriends, setSellerFriends] = useState([]);
+    const [sellerPost, setSellerPost] = useState(false);
     const [fav, setFav] = useState(false);
     const [userFav, setUserFav] = useState([]);
     const [buttonStatus, setButtonStatus] = useState(false);
 
-    window.onload = (event) => {
-        console.log('page is fully loaded');
-    };
 
     useEffect(() => {
         userFav.map((favDoc)=>{
@@ -36,7 +33,6 @@ function PostView() {
                 } 
             }
         });
-
     },[userFav])
 
     useEffect(() => {
@@ -60,9 +56,14 @@ function PostView() {
         .onSnapshot (snapshot => {
             setFeatures(snapshot.data()?.features);
         })
-        
-        //remember to unsubscribe from your realtime listener on unmount or you will create a memory leak
     },[postId])
+
+    useEffect(() => {
+        console.log(property)
+        if (property?.sellerUID === user?.uid){
+            setSellerPost(true);
+        }
+    },[property])
 
     useEffect(() => {
         updateLength();
@@ -76,14 +77,6 @@ function PostView() {
                 data: doc.data(),
             })));
         })
-
-        db
-        .collection("users")
-        .doc(property?.sellerUID)
-        .collection("friends")
-        .onSnapshot((snapshot) => {
-            setSellerFriends(snapshot.docs.map((doc) => doc.data()));
-        });
     },[images])
 
     const nexSlide = () => {
@@ -265,7 +258,7 @@ function PostView() {
                                 })}
                             </div>
                         </div>
-                        <div className = "message__card">
+                        <div className = {sellerPost ? 'messageDisplayNone' : 'message__card'}>
                             <div className="postView__sellerContainer">
                                 <span className="sellerContainer__header">
                                     <Avatar />

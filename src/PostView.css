@@ -91,6 +91,10 @@
   transition: all 0.3s ease-in-out;
 }
 
+.messageDisplayNone {
+  display: none;
+}
+
 .postView__featuresContainer {
   display: flex;
   flex-wrap: wrap;
