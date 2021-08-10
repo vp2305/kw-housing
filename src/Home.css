@@ -61,8 +61,7 @@
 
 .features__container {
   width: 100%;
-
-  margin-top: 6rem;
+  margin-top: 13vh;
   padding: 20px;
 }
 
@@ -248,9 +247,6 @@
 }
 
 @media only screen and (max-width: 1025px) {
-  .features__container {
-    margin-top: 12rem;
-  }
 }
 
 @media only screen and (max-width: 1270px) {
@@ -272,10 +268,6 @@
   .features__wrapper {
     margin-bottom: 20px;
     width: fit-content;
-  }
-
-  .features__container {
-    margin-top: 11rem;
   }
 
   #row_one {

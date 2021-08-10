@@ -1,7 +1,7 @@
 .myPosting {
   margin-top: -6.3rem;
   width: 100%;
-  height: auto;
+  min-height: 74.65vh;
 }
 
 .myPosting__wrapper {
@@ -16,7 +16,6 @@
   margin-top: 150px;
   margin-bottom: 50px;
 }
-
 
 .myPosting__wrapper > hr {
   display: block;
