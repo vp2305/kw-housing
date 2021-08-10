@@ -5,10 +5,10 @@ import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import "./PostView.css";
 import { Avatar, Button } from '@material-ui/core';
 import { useStateValue } from './StateProvider';
-import firebase from "firebase";
 import { IconButton } from '@material-ui/core';
 import { MdFavorite } from 'react-icons/md';
 import { GrFavorite } from 'react-icons/gr';
+import firebase from 'firebase';
 
 function PostView() {
     const {postId} = useParams();
@@ -23,7 +23,7 @@ function PostView() {
     const [fav, setFav] = useState(false);
     const [userFav, setUserFav] = useState([]);
     const [buttonStatus, setButtonStatus] = useState(false);
-
+    const [currentFav, setCurrentFav] = useState([]);
 
     useEffect(() => {
         userFav.map((favDoc)=>{
@@ -59,10 +59,10 @@ function PostView() {
     },[postId])
 
     useEffect(() => {
-        console.log(property)
         if (property?.sellerUID === user?.uid){
             setSellerPost(true);
         }
+        setCurrentFav(property?.favorites)
     },[property])
 
     useEffect(() => {
@@ -121,16 +121,37 @@ function PostView() {
                 imageURLS: images,
                 latitude: property?.latitude,
                 longitude: property?.longitude,
+      
             });
-            // alert("Already added to the list");
+            
+            // Add user to the favorites list for the property
+            console.log(property?.favorites);
+            var availablePropertyDoc = db.collection("availableProperty").doc(postId);
+            if (currentFav.indexOf(user?.uid) === -1){
+                currentFav.push(user?.uid)
+                availablePropertyDoc.update({
+                    favorites: currentFav
+                });
+            }
             setFav(true);
         } else { 
+            var availablePropertyDoc = db.collection("availableProperty").doc(postId);
+            if (currentFav.indexOf(user?.uid) !== -1){
+                var currentFavIndex = currentFav.indexOf(user?.uid);
+                currentFav.splice(currentFavIndex, 1)
+                availablePropertyDoc.update({
+                    favorites: currentFav
+                });
+            }
+
             db
             .collection('users')
             .doc(user?.uid)
             .collection('favorites')
             .doc(postId)
             .delete();
+
+
             setFav(false);
         }
     }
@@ -243,6 +264,7 @@ function PostView() {
                                 <GrFavorite id = "unFilled__favIcon"/>
                             </IconButton>
                         )}
+                        ⤎ <i>{currentFav?.length}</i> 
                     </span> 
                 </h1>
                 <p>${property.pricePerMonth} / Month · {property.address} · Bedrooms: {property.bedrooms} · Bathrooms: {property.bathrooms}</p>

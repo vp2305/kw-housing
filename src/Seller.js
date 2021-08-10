@@ -246,6 +246,8 @@ function Seller() {
                             imageURLS: imageURLS,
                             latitude: lat,
                             longitude: lng,
+                            favorites: []
+                      
                         });
 
                         // Uploading the property to the user tab for my postings tab.
@@ -271,6 +273,7 @@ function Seller() {
                             imageURLS: imageURLS,
                             latitude: lat,
                             longitude: lng,
+                   
                         });
                     }
                 });

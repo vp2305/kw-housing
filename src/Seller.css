@@ -319,8 +319,7 @@ input[type="file"] {
   top: 85%;
   bottom: 32px;
   font-size: 3rem;
-  color: red;
-
+  color: #d64e39;
   cursor: pointer;
   user-select: none;
 }

@@ -12,7 +12,7 @@ function InfoProperty({property, id, myPosting, favorite}) {
     const [length, setLength] = useState(0);
     const history = useHistory();
     const [{user}] = useStateValue();
-
+    const [favUsers, setFavUsers] = useState([]);
     useEffect(() => {
         setImages(property.data.imageURLS)
     },[property])
@@ -35,17 +35,35 @@ function InfoProperty({property, id, myPosting, favorite}) {
     }
 
     function deleteListing(id) {
+        // Removing the listing from the users who put it into favs tab
         db
         .collection('availableProperty')
         .doc(id)
-        .delete();
-
-        db
-        .collection('users')
-        .doc(user?.uid)
-        .collection('userSellingProperty')
-        .doc(id)
-        .delete();
+        .onSnapshot (snapshot => {
+            if (snapshot.data()?.favorites.length !== 0){
+                snapshot.data()?.favorites.map((favPeopleUID) => {
+                    console.log(favPeopleUID);
+                    db
+                    .collection('users')
+                    .doc(favPeopleUID)
+                    .collection('favorites')
+                    .doc(id)
+                    .delete();
+                })
+            }
+            // Removing the listing from the available properties
+            db
+            .collection('availableProperty')
+            .doc(id)
+            .delete();
+            // Removing the listing from the users posting
+            db
+            .collection('users')
+            .doc(user?.uid)
+            .collection('userSellingProperty')
+            .doc(id)
+            .delete();
+        })
     }
 
     return (
