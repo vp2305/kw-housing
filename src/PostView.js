@@ -26,6 +26,7 @@ function PostView() {
     const [currentFav, setCurrentFav] = useState([]);
 
     useEffect(() => {
+        alreadyFriendCheck();
         userFav.map((favDoc)=>{
             if (fav === false) {
                 if (favDoc.id === postId){
@@ -61,6 +62,8 @@ function PostView() {
     useEffect(() => {
         if (property?.sellerUID === user?.uid){
             setSellerPost(true);
+        } else {
+            setSellerPost(false);
         }
         setCurrentFav(property?.favorites)
     },[property])
@@ -92,72 +95,74 @@ function PostView() {
     }
 
     const favStatus = () => {
-        console.log(fav);
-        if (fav === false) {
-            db
-            .collection('users')
-            .doc(user?.uid)
-            .collection('favorites')
-            .doc(postId)
-            .set({
-                address: property?.address,
-                city: property?.city,
-                unitNumber: property?.unitNumber, 
-                zipCode: property?.zipCode,
-                listingTitle: property?.listingTitle,
-                bedrooms: property?.bedrooms,
-                bathrooms: property?.bathrooms,
-                description: property?.description,
-                buildingType: property?.buildingType,
-                fromDate: property?.fromDate,
-                rentDuration: property?.rentDuration,
-                leaseType: property?.leaseType,
-                genderSpecification: property?.genderSpecification,
-                pricePerMonth: property?.pricePerMonth,
-                utilityPricePerMonth: property?.utilityPricePerMonth,
-                sellerUID: property?.sellerUID,
-                sellerName: property?.sellerName,
-                features: features,
-                imageURLS: images,
-                latitude: property?.latitude,
-                longitude: property?.longitude,
-      
-            });
-            
-            // Add user to the favorites list for the property
-            console.log(property?.favorites);
-            var availablePropertyDoc = db.collection("availableProperty").doc(postId);
-            if (currentFav.indexOf(user?.uid) === -1){
-                currentFav.push(user?.uid)
-                availablePropertyDoc.update({
-                    favorites: currentFav
+        if (user){
+            console.log(fav);
+            if (fav === false) {
+                db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('favorites')
+                .doc(postId)
+                .set({
+                    address: property?.address,
+                    city: property?.city,
+                    unitNumber: property?.unitNumber, 
+                    zipCode: property?.zipCode,
+                    listingTitle: property?.listingTitle,
+                    bedrooms: property?.bedrooms,
+                    bathrooms: property?.bathrooms,
+                    description: property?.description,
+                    buildingType: property?.buildingType,
+                    fromDate: property?.fromDate,
+                    rentDuration: property?.rentDuration,
+                    leaseType: property?.leaseType,
+                    genderSpecification: property?.genderSpecification,
+                    pricePerMonth: property?.pricePerMonth,
+                    utilityPricePerMonth: property?.utilityPricePerMonth,
+                    sellerUID: property?.sellerUID,
+                    sellerName: property?.sellerName,
+                    features: features,
+                    imageURLS: images,
+                    latitude: property?.latitude,
+                    longitude: property?.longitude,
+        
                 });
+                
+                // Add user to the favorites list for the property
+                console.log(property?.favorites);
+                var availablePropertyDoc = db.collection("availableProperty").doc(postId);
+                if (currentFav.indexOf(user?.uid) === -1){
+                    currentFav.push(user?.uid)
+                    availablePropertyDoc.update({
+                        favorites: currentFav
+                    });
+                }
+                setFav(true);
+            } else { 
+                var availablePropertyDoc = db.collection("availableProperty").doc(postId);
+                if (currentFav.indexOf(user?.uid) !== -1){
+                    var currentFavIndex = currentFav.indexOf(user?.uid);
+                    currentFav.splice(currentFavIndex, 1)
+                    availablePropertyDoc.update({
+                        favorites: currentFav
+                    });
+                }
+
+                db
+                .collection('users')
+                .doc(user?.uid)
+                .collection('favorites')
+                .doc(postId)
+                .delete();
+                setFav(false);
             }
-            setFav(true);
-        } else { 
-            var availablePropertyDoc = db.collection("availableProperty").doc(postId);
-            if (currentFav.indexOf(user?.uid) !== -1){
-                var currentFavIndex = currentFav.indexOf(user?.uid);
-                currentFav.splice(currentFavIndex, 1)
-                availablePropertyDoc.update({
-                    favorites: currentFav
-                });
-            }
-
-            db
-            .collection('users')
-            .doc(user?.uid)
-            .collection('favorites')
-            .doc(postId)
-            .delete();
-
-
-            setFav(false);
+        } else {
+            alert("Please sign in to add this property to your favorites list!")
         }
+        
     }
 
-    const alreadyFriendCheck = (e) => {
-        e.preventDefault();
+    const alreadyFriendCheck = () => {
         let peopleStatus = false;
         db
         .collection("users")
@@ -175,20 +180,21 @@ function PostView() {
             if (peopleStatus === true){
                 setButtonStatus(true);
             } 
-            else {
-                newFriend();
-            }
         });
-        console.log(buttonStatus);
-        if (buttonStatus === true){
-            alert("You have already contacted this seller before check messages!");
-        }
     }
+
+    useEffect(() => {
+        console.log("Button status" + buttonStatus);
+    },[buttonStatus])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (user){
-            alreadyFriendCheck(e);
+            if (buttonStatus === true){
+                alert("You have already contacted this seller before check messages!");
+            } else if (buttonStatus === false){
+                newFriend()
+            }
         } else {
             alert("You need to sign-in before connecting with the seller!");
         }   
@@ -218,36 +224,33 @@ function PostView() {
     }
 
     const sendMessage = (id, otherId) => {
-        if (message !== ""){
-            db
-            .collection('users')
-            .doc(user?.uid)
-            .collection('friends')
-            .doc(id)
-            .collection('messages')
-            .add({
-                message: message,
-                name: user?.displayName,
-                email: user?.email,
-                timestamps: firebase.firestore.FieldValue.serverTimestamp(),
-            });
+        db
+        .collection('users')
+        .doc(user?.uid)
+        .collection('friends')
+        .doc(id)
+        .collection('messages')
+        .add({
+            message: message,
+            name: user?.displayName,
+            email: user?.email,
+            timestamps: firebase.firestore.FieldValue.serverTimestamp(),
+        });
 
-            db
-            .collection('users')
-            .doc(property?.sellerUID)
-            .collection('friends')
-            .doc(otherId)
-            .collection('messages')
-            .add({
-                message: message,
-                name: user?.displayName,
-                email: user?.email,
-                timestamps: firebase.firestore.FieldValue.serverTimestamp(),
-            });
-            alert("Your message is sent, check message tab!");
-        } else {
-            alert("Please write a message before submitting!");
-        }
+        db
+        .collection('users')
+        .doc(property?.sellerUID)
+        .collection('friends')
+        .doc(otherId)
+        .collection('messages')
+        .add({
+            message: message,
+            name: user?.displayName,
+            email: user?.email,
+            timestamps: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+        setButtonStatus(true);
+        alert("Your message is sent, please check your message tab!");
     }
 
     return (

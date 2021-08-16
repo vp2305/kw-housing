@@ -21,7 +21,6 @@
   flex-direction: row;
   padding-top: 1rem;
   justify-content: space-evenly;
-
   /* margin: auto;
   padding-top: 40px; */
 }
@@ -53,7 +52,7 @@
   background-color: #3793a7;
   background-color: #3793a7 !important;
   margin-top: 25px;
-  width: 150px;
+  width: 156px;
   height: 3.1em;
   font-size: 16px;
   color: #fffdfd;

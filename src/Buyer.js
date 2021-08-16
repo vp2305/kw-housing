@@ -58,6 +58,7 @@ function Buyer() {
     },[])
 
     useEffect(() => {
+        console.log("Property", property);
         if (property.length === 0) {
             setNoListings(true);
         } else {

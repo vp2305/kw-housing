@@ -10,6 +10,7 @@
   border-radius: 15px;
   object-fit: contain;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .sidebarWithChat > h1 {
@@ -23,6 +24,8 @@
   background: rgba(2, 2, 2, 0.85);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  height: 88vh;
+  overflow-y: auto;
 }
 
 .sidebar__header {

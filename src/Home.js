@@ -31,10 +31,10 @@ function Home() {
         if (name != "" && email != "" && phone != "" && message != "" && subject != ""){
             emailjs.send('service_6bg1s07', 'template_dmd5sg7', templateParams)
             .then((response) => {
-                alert("Message Sent, We will get back to you shortly!");
+                alert("Message sent, we will get back to you shortly!");
             },
             (error) => {
-                alert('An error occurred, Please try again.', error.text);    
+                alert('An error occurred, please try again.', error.text);    
             });
         } else {
             alert("Please fill all the necessary information before submitting.");
@@ -55,7 +55,7 @@ function Home() {
                     <h1>Housing Marketplace for Kitchener Waterloo Region</h1>
                     <div className="buttonContainer">
                             <Button variant="contained" type="primary" onClick={() => history.push("/browse-listing")}>
-                                Browse Listing
+                                Browse Listings
                             </Button>
                             <Button variant="contained" type="primary" onClick={() => history.push("/new-listing")}>
                                 Post Listing

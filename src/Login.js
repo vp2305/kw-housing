@@ -122,7 +122,7 @@ function Login() {
                                     </svg>
                                 </span>
                                 <div className="signIn__Container">
-                                    <Button variant="contained" color="primary" onClick={signInEmailPassword}>Sign In</Button>
+                                    <Button variant="contained" color="primary" type ="submit" onClick={signInEmailPassword}>Sign In</Button>
                                 </div>
                                 <div className = "signIn__Divider">
                                     <div className="sign__DividerContainer">
@@ -130,7 +130,7 @@ function Login() {
                                         <p>or</p>
                                         <hr/>
                                     </div>
-                                    <Button  variant="contained" color="primary" type ="submit" onClick={signInGoogle}>
+                                    <Button  variant="contained" color="primary" onClick={signInGoogle}>
                                         <span className="googleSpanContainer">
                                             <img className = "googleButtonImage" src = "/Images/Login/google.png" alt = "" />
                                             Sign in With Google
